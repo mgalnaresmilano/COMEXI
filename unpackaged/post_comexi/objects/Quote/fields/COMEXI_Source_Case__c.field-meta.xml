@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Source_Case__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Caso de servicio que originó esta oferta de retrofit. Mantiene la trazabilidad caso -> oportunidad -> oferta sin depender de la oportunidad intermedia. El caso 174535 origina la oferta Retrofit T100.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Caso de servicio del que nace esta oferta.</inlineHelpText>
+    <label>Caso de origen</label>
+    <referenceTo>Case</referenceTo>
+    <relationshipLabel>Ofertas de retrofit</relationshipLabel>
+    <relationshipName>COMEXI_Retrofit_Quotes</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

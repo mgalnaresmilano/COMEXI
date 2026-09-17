@@ -1,0 +1,556 @@
+/* Misma paleta que comexiRevenueDashboard y comexiCaseRetrofitAdvisor: antracita
+   #455560 del wordmark y rojo #ed1848 del simbolo. El rojo queda para acentos de
+   marca, no para semantica de estado. */
+:host {
+    --c-ink: #1c2630;
+    --c-weak: #78868f;
+    --c-border: #e3e7ea;
+    --c-surface: #ffffff;
+    --c-surface-2: #f6f7f8;
+    --c-brand: #455560;
+    --c-brand-2: #6b7a87;
+    --c-accent: #ed1848;
+    --c-accent-bg: #fdf1f4;
+    --c-accent-border: #f7ccd7;
+    --c-good: #15803d;
+    --c-good-bg: #dcfce7;
+    --c-warn: #b45309;
+    --c-warn-bg: #fef3c7;
+    --c-bad: #b91c1c;
+    --c-bad-bg: #fee2e2;
+    --c-neutral: #455560;
+    --c-neutral-bg: #e3e7ea;
+}
+
+.card-title {
+    font-weight: 700;
+}
+
+.machine-body {
+    padding: 0 1rem 1rem;
+    color: var(--c-ink);
+}
+
+.loading {
+    position: relative;
+    min-height: 5rem;
+}
+
+.muted {
+    color: var(--c-weak);
+    font-size: 0.75rem;
+    margin: 0;
+}
+
+.mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.6875rem;
+    color: var(--c-brand);
+    white-space: nowrap;
+}
+
+.eyebrow {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--c-accent);
+    margin: 0;
+}
+
+.alert {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 0.75rem;
+    border-radius: 0.25rem;
+    font-size: 0.8125rem;
+}
+
+.alert-bad {
+    background: var(--c-bad-bg);
+    color: var(--c-bad);
+}
+
+/* ---------- Rejilla principal ---------- */
+
+.layout {
+    display: grid;
+    grid-template-columns: minmax(16rem, 22rem) minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+}
+
+/* Por debajo de 64rem la columna de la foto deja de tener sentido al lado: la
+   Lightning page puede estar en una region estrecha o en movil. */
+@media (max-width: 64rem) {
+    .layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+.col-left,
+.col-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 0;
+}
+
+/* ---------- Foto de la maquina ---------- */
+
+.photo {
+    position: relative;
+    border: 1px solid var(--c-border);
+    border-radius: 0.375rem;
+    overflow: hidden;
+    background: var(--c-surface-2);
+    line-height: 0;
+}
+
+.photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.photo-tag {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 0.5rem;
+    padding: 0.125rem 0.5rem;
+    border-radius: 1rem;
+    background: rgba(28, 38, 48, 0.82);
+    color: #ffffff;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.6875rem;
+    line-height: 1.4;
+}
+
+/* ---------- Placa de identificacion ---------- */
+
+.plate-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.25;
+    margin: 0.125rem 0 0.25rem;
+}
+
+.plate-account {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    margin: 0 0 0.75rem;
+}
+
+.plate-account a {
+    color: var(--c-accent);
+    cursor: pointer;
+}
+
+.plate-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.375rem;
+    margin: 0;
+    border-top: 1px solid var(--c-border);
+    padding-top: 0.625rem;
+}
+
+.plate-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.75rem;
+    font-size: 0.75rem;
+}
+
+.plate-row dt {
+    color: var(--c-weak);
+    flex: 0 0 auto;
+}
+
+.plate-row dd {
+    margin: 0;
+    font-weight: 600;
+    text-align: right;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+/* ---------- Ficha tecnica en tira ---------- */
+
+.specs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+}
+
+.spec {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    padding: 0.5rem 0.625rem;
+    background: var(--c-surface-2);
+    border-radius: 0.25rem;
+}
+
+.spec-label {
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--c-weak);
+}
+
+.spec-value {
+    font-size: 0.8125rem;
+    font-weight: 600;
+}
+
+/* ---------- KPIs ---------- */
+
+.kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+    gap: 0.625rem;
+}
+
+.kpi {
+    padding: 0.625rem 0.75rem;
+    border: 1px solid var(--c-border);
+    border-radius: 0.375rem;
+    background: var(--c-surface);
+}
+
+.kpi-accent {
+    border-color: var(--c-accent-border);
+    background: var(--c-accent-bg);
+}
+
+.kpi-value {
+    font-size: 1.375rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--c-brand);
+    margin: 0;
+}
+
+.kpi-accent .kpi-value {
+    color: var(--c-accent);
+}
+
+.kpi-unit {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--c-weak);
+    margin-left: 0.25rem;
+}
+
+.kpi-label {
+    font-size: 0.6875rem;
+    color: var(--c-weak);
+    margin: 0.125rem 0 0;
+}
+
+/* ---------- Banda de obsolescencia ---------- */
+
+.obsolescence {
+    border: 1px solid var(--c-border);
+    border-left: 3px solid var(--c-brand);
+    border-radius: 0.375rem;
+    padding: 0.75rem 0.875rem;
+    background: var(--c-surface-2);
+}
+
+.obsolescence-bad {
+    border-left-color: var(--c-bad);
+    background: var(--c-bad-bg);
+}
+
+.obsolescence-warn {
+    border-left-color: var(--c-warn);
+    background: var(--c-warn-bg);
+}
+
+.obsolescence-good {
+    border-left-color: var(--c-good);
+    background: var(--c-good-bg);
+}
+
+.obsolescence-head {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.625rem;
+}
+
+.obsolescence-head h3 {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    margin: 0;
+    flex: 1 1 auto;
+}
+
+.obsolescence-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    gap: 0.5rem 1rem;
+}
+
+.obs-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    min-width: 0;
+}
+
+.obs-item-wide {
+    grid-column: 1 / -1;
+}
+
+.obs-label {
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--c-weak);
+}
+
+.obs-value {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+.viability {
+    margin-top: 0.75rem;
+    padding-top: 0.625rem;
+    border-top: 1px solid rgba(28, 38, 48, 0.12);
+}
+
+.viability-detail {
+    font-size: 0.75rem;
+    color: var(--c-ink);
+    margin: 0.375rem 0 0;
+}
+
+.potential {
+    font-size: 0.75rem;
+    margin: 0.5rem 0 0;
+    color: var(--c-ink);
+}
+
+/* ---------- Bloques ---------- */
+
+.block {
+    border-top: 1px solid var(--c-border);
+    padding-top: 0.875rem;
+}
+
+.block-head {
+    margin-bottom: 0.625rem;
+}
+
+.block-head h3 {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* ---------- Componentes y casos ---------- */
+
+.components,
+.cases {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.component-row,
+.case-row {
+    display: grid;
+    grid-template-columns: minmax(7rem, auto) minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.4375rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+}
+
+.component-row:nth-child(odd),
+.case-row:nth-child(odd) {
+    background: var(--c-surface-2);
+}
+
+.component-row.is-at-risk {
+    background: var(--c-bad-bg);
+}
+
+.component-link {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    font-weight: 600;
+    color: var(--c-accent);
+    cursor: pointer;
+    text-align: left;
+}
+
+.component-link:hover {
+    text-decoration: underline;
+}
+
+.component-config,
+.case-subject {
+    color: var(--c-ink);
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ---------- Timeline ---------- */
+
+.timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.timeline-item {
+    display: grid;
+    grid-template-columns: 1.5rem minmax(0, 1fr);
+    gap: 0.75rem;
+    position: relative;
+    padding-bottom: 0.875rem;
+}
+
+/* La linea vertical se dibuja desde el marcador y se corta en el ultimo hito. */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 0.6875rem;
+    top: 1.5rem;
+    bottom: 0;
+    width: 1px;
+    background: var(--c-border);
+}
+
+.timeline-item:last-child {
+    padding-bottom: 0;
+}
+
+.timeline-item:last-child::before {
+    display: none;
+}
+
+.timeline-marker {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background: var(--c-brand);
+}
+
+.marker-install {
+    background: var(--c-brand);
+}
+
+.marker-service {
+    background: var(--c-brand-2);
+}
+
+.marker-retrofit {
+    background: var(--c-accent);
+}
+
+.marker-alert {
+    background: var(--c-bad);
+}
+
+.timeline-content {
+    min-width: 0;
+}
+
+.timeline-date {
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--c-weak);
+    margin: 0;
+}
+
+.timeline-title {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    margin: 0.0625rem 0 0.125rem;
+}
+
+.timeline-detail {
+    font-size: 0.75rem;
+    color: var(--c-weak);
+    margin: 0;
+}
+
+/* ---------- Badges y pills ---------- */
+
+.badge {
+    display: inline-block;
+    padding: 0.0625rem 0.5rem;
+    border-radius: 1rem;
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+.badge-good {
+    background: var(--c-good-bg);
+    color: var(--c-good);
+}
+
+.badge-warn {
+    background: var(--c-warn-bg);
+    color: var(--c-warn);
+}
+
+.badge-bad {
+    background: var(--c-bad-bg);
+    color: var(--c-bad);
+}
+
+.badge-neutral {
+    background: var(--c-neutral-bg);
+    color: var(--c-neutral);
+}
+
+.badge-accent {
+    background: var(--c-accent-bg);
+    color: var(--c-accent);
+}
+
+.pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.625rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.pill-good {
+    background: var(--c-good);
+}
+
+.pill-warn {
+    background: var(--c-warn);
+}
+
+.pill-bad {
+    background: var(--c-bad);
+}

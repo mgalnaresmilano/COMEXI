@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_SAP_Equipment_Code__c</fullName>
+    <description>Código de equipo de la máquina en SAP. Es la matrícula con la que hoy se la busca fuera de Salesforce, así que sin ella el técnico sigue teniendo que abrir dos sistemas para hablar de la misma máquina.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Código con el que esta máquina existe en SAP.</inlineHelpText>
+    <label>Código de equipo SAP</label>
+    <length>40</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

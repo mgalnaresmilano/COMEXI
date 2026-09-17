@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>COMEXI Retrofit Advisor</masterLabel>
+    <description>Escena 02 del guion Comexi. Resume el caso de servicio, la maquina afectada y los precedentes de otros clientes, simula el razonamiento del agente COMEXI Retrofit Advisor y crea de verdad la oportunidad de retrofit y su oferta via Place Sales Transaction.</description>
+    <targets>
+        <target>lightning__RecordPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <objects>
+                <object>Case</object>
+            </objects>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

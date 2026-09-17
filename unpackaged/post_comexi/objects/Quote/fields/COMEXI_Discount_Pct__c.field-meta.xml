@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Discount_Pct__c</fullName>
+    <description>Descuento aplicado por el vendedor sobre el precio de venta. Dispara la aprobación si supera el umbral.</description>
+    <externalId>false</externalId>
+    <label>Discount %</label>
+    <precision>5</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

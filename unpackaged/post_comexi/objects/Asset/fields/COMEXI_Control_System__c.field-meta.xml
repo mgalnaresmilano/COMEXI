@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Control_System__c</fullName>
+    <description>Plataforma de control y accionamiento instalada (por ejemplo Simotion GL + Sinamics). Es la clave de compatibilidad del retrofit T100: si la CPU y la CU son de la generación soportada, el trabajo es de campo y no pasa por ingeniería de proyecto.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Plataforma de control y accionamiento instalada en la máquina.</inlineHelpText>
+    <label>Sistema de control</label>
+    <length>80</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

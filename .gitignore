@@ -139,6 +139,9 @@ docs/erds/erd-data.json.bak*
 docs/erds/orphan-candidates*.md
 unpackaged/post_ux/drift_report.json
 tmp-metadata/
+# Retrieve de trabajo de las plantillas CLM: lo que vale ya esta versionado en
+# unpackaged/post_comexi/documentTemplates.
+tmp_clm/
 .cursor/plans/**
 retrieved_rlm_bundle/
 postman/archive/

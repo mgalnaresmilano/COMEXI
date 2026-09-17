@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Generated_By_Advisor__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Marca los pedidos que nacen de la cadena del Retrofit Advisor. Es el filtro que usa la automatizacion para no tocar pedidos de otros flujos.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Pedido nacido de la cadena del Retrofit Advisor.</inlineHelpText>
+    <label>Generado por el Advisor</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

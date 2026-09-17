@@ -1,0 +1,62 @@
+// ============================================================================
+// COMEXI_T100 - Retrofit T100 UPDATE PC (Release 262 / API v67)
+// ============================================================================
+// Sustituye las pestanas ETO_Options / ETO_Codes del LAUNCHER V8.4:
+// preguntas de configuracion (n. CPUs GL, n. CUs) y opcionales del retrofit,
+// con las reglas que impiden combinaciones imposibles.
+//
+// Paradigma LineItem-primary (bundle/configuracion), igual que QuantumBitComplete:
+// el bundle T100 es un LineItem con relaciones a sus componentes (mapean a
+// ProductRelatedComponent). Asociacion al producto via ExpressionSetConstraintObj
+// (Type sobre T100; Port sobre cada componente).
+//
+// NOTA: los valores concretos de las reglas son supuestos a validar con Comexi
+// (el Discovery confirma la EXISTENCIA de preguntas/opcionales, no la matriz
+// exacta de compatibilidad).
+// ----------------------------------------------------------------------------
+
+// --- Base type ---
+type LineItem;
+
+// --- Bundle configurable T100 ---
+type T100UpdatePC : LineItem {
+
+    // Componente base (siempre presente): actualizacion a Windows 11
+    relation updatebase : UpdateBase[1..1];
+
+    // Opcionales
+    relation cpusimotion : CpuSimotion;
+    relation cusinamics : CuSinamics;
+    relation pupitrehmi : PupitreHMI;
+    relation canvipantalla : CanviPantalla;
+    relation checklistserie : ChecklistSerie;
+
+    // --- Preguntas de configuracion (atributos del producto) ---
+    @(defaultValue = "0")
+    int numCpuGL = [0, 1, 2, 3, 4];
+
+    @(defaultValue = "0")
+    int numCuTotal = [0, 1, 2, 3, 4];
+
+    // --- Reglas ---
+
+    // 1. Si hay CPUs GL declaradas, el cambio de CPU Simotion es obligatorio
+    constraint(numCpuGL > 0 -> cpusimotion[CpuSimotion] >= 1, "Con CPUs GL en la maquina, el cambio de CPU Simotion es obligatorio.");
+
+    // 2. Si hay CUs, el cambio de CU Sinamics es obligatorio
+    constraint(numCuTotal > 0 -> cusinamics[CuSinamics] >= 1, "Con CUs en la maquina, el cambio de CU Sinamics es obligatorio.");
+
+    // 3. El pupitre HMI y el cambio de pantalla son mutuamente excluyentes
+    constraint(pupitrehmi[PupitreHMI] + canvipantalla[CanviPantalla] <= 1, "Pupitre HMI y cambio de pantalla no pueden ir en el mismo retrofit.");
+
+    // 4. Aviso informativo cuando se pide checklist con n. de serie
+    message(checklistserie[ChecklistSerie] >= 1, "Recuerda adjuntar los numeros de serie de los componentes sustituidos.", "warning");
+}
+
+// --- Tipos de componente (mapean a Product2 del bundle via ESC Port) ---
+type UpdateBase : LineItem;        // T100-W11  (requerido siempre)
+type CpuSimotion : LineItem;       // T100-CPU-SIM
+type CuSinamics : LineItem;        // T100-CU-SIN
+type PupitreHMI : LineItem;        // T100-HMI
+type CanviPantalla : LineItem;     // T100-SCREEN
+type ChecklistSerie : LineItem;    // T100-CHECKLIST

@@ -1,0 +1,310 @@
+<template>
+    <lightning-card icon-name="utility:einstein">
+        <span slot="title" class="card-title">COMEXI Retrofit Advisor</span>
+
+        <div class="advisor-body">
+            <template if:true={isLoading}>
+                <div class="loading">
+                    <lightning-spinner alternative-text="Cargando" size="small"></lightning-spinner>
+                </div>
+            </template>
+
+            <template if:true={loadError}>
+                <div class="alert alert-bad">
+                    <lightning-icon icon-name="utility:error" size="x-small" variant="error"></lightning-icon>
+                    <span>{loadError}</span>
+                </div>
+            </template>
+
+            <template if:true={briefing}>
+                <!-- ── Cabecera del caso ───────────────────────────────────────── -->
+                <div class="case-head">
+                    <div class="case-head-main">
+                        <p class="eyebrow">Caso {briefing.caseNumber} &middot; {briefing.origin}</p>
+                        <h2 class="case-subject">{briefing.subject}</h2>
+                        <p class="case-desc">{briefing.description}</p>
+                    </div>
+                    <div class="case-head-meta">
+                        <span class="badge badge-bad">{briefing.priority}</span>
+                        <span class="badge badge-neutral">{briefing.status}</span>
+                    </div>
+                </div>
+
+                <!-- ── Quien lo reporta ────────────────────────────────────────── -->
+                <div class="reporter">
+                    <lightning-icon icon-name="standard:contact" size="small"></lightning-icon>
+                    <div class="reporter-text">
+                        <p class="reporter-name">{briefing.contactName}
+                            <template if:true={briefing.contactTitle}>
+                                <span class="reporter-title">&middot; {briefing.contactTitle}</span>
+                            </template>
+                        </p>
+                        <p class="reporter-contact">{briefing.contactEmail} &middot; {briefing.contactPhone} &middot; {briefing.accountName}</p>
+                    </div>
+                </div>
+
+                <!-- ── Las cuatro preguntas ────────────────────────────────────── -->
+                <div class="questions">
+                    <template for:each={questions} for:item="q">
+                        <article key={q.id} class="question">
+                            <div class="question-head">
+                                <lightning-icon icon-name={q.icon} size="x-small"></lightning-icon>
+                                <h3>{q.title}</h3>
+                            </div>
+                            <p>{q.body}</p>
+                        </article>
+                    </template>
+                </div>
+
+                <!-- ── Maquina afectada ────────────────────────────────────────── -->
+                <template if:true={hasMachine}>
+                    <section class="panel machine">
+                        <div class="panel-title">
+                            <lightning-icon icon-name="standard:asset_object" size="x-small"></lightning-icon>
+                            <span>Maquina afectada</span>
+                            <lightning-button
+                                class="panel-title-action"
+                                variant="base"
+                                label="Abrir asset"
+                                onclick={handleOpenMachine}></lightning-button>
+                        </div>
+                        <div class="machine-body">
+                            <template if:true={machine.imageUrl}>
+                                <img class="machine-img" src={machine.imageUrl} alt={machine.productName} />
+                            </template>
+                            <div class="machine-facts">
+                                <h4>{machine.name} &middot; {machine.productName}</h4>
+                                <dl class="facts">
+                                    <div><dt>Modelo</dt><dd>{machine.model}</dd></div>
+                                    <div><dt>Ano de instalacion</dt><dd>{machine.installYear}</dd></div>
+                                    <div><dt>Antiguedad</dt><dd>{machine.ageYears} anos</dd></div>
+                                    <div><dt>Linea</dt><dd>{machine.line}</dd></div>
+                                    <div><dt>Referencia</dt><dd>{machine.sku}</dd></div>
+                                    <div><dt>Numero de serie</dt><dd>{machine.serialNumber}</dd></div>
+                                </dl>
+                                <p class="machine-config">{machine.installedConfig}</p>
+                            </div>
+                        </div>
+
+                        <table class="data-table components">
+                            <thead>
+                                <tr>
+                                    <th>Componente</th>
+                                    <th>Numero de serie</th>
+                                    <th>Configuracion</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={components} for:item="c">
+                                    <tr key={c.id} class={c.rowClass}>
+                                        <td>{c.productName}</td>
+                                        <td>{c.serialNumber}</td>
+                                        <td>{c.config}</td>
+                                        <td><span class={c.badgeClass}>{c.badgeLabel}</span></td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </section>
+                </template>
+
+                <!-- ── Precedentes en otros clientes ───────────────────────────── -->
+                <section class="panel">
+                    <div class="panel-title">
+                        <lightning-icon icon-name="utility:search" size="x-small"></lightning-icon>
+                        <span>Casos similares en la base instalada</span>
+                    </div>
+                    <p class="panel-sub">{relatedSummary}</p>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Caso</th>
+                                <th>Cliente</th>
+                                <th>Maquina</th>
+                                <th>Situacion</th>
+                                <th>Retrofit</th>
+                                <th class="num">Dias</th>
+                                <th class="num">Importe</th>
+                                <th>Desenlace</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={relatedRows} for:item="rc">
+                                <tr key={rc.id}>
+                                    <td class="mono">{rc.caseNumber}</td>
+                                    <td>{rc.customer}<span class="muted"> &middot; {rc.country}</span></td>
+                                    <td>{rc.machineModel}<span class="muted"> &middot; {rc.installYear}</span></td>
+                                    <td class="narrative">{rc.problem}</td>
+                                    <td class="mono">{rc.retrofit}</td>
+                                    <td class="num">{rc.daysLabel}</td>
+                                    <td class="num">{rc.amountLabel}</td>
+                                    <td><span class={rc.outcomeClass}>{rc.outcomeLabel}</span></td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- ── Lanzar el agente ────────────────────────────────────────── -->
+                <template if:true={isBriefing}>
+                    <div class="cta">
+                        <lightning-button
+                            variant="brand"
+                            label="Lanzar COMEXI Retrofit Advisor"
+                            icon-name="utility:einstein"
+                            onclick={handleRunAdvisor}></lightning-button>
+                        <p class="cta-note">El asesor lee el caso, barre la base instalada y valida cada SKU contra el catalogo antes de recomendar.</p>
+                    </div>
+                </template>
+
+                <!-- ── Progreso ────────────────────────────────────────────────── -->
+                <template if:true={isRunning}>
+                    <section class="panel stages-panel">
+                        <div class="panel-title">
+                            <lightning-icon icon-name="utility:einstein" size="x-small"></lightning-icon>
+                            <span>El asesor esta razonando</span>
+                        </div>
+                        <ul class="stages">
+                            <template for:each={stages} for:item="s">
+                                <li key={s.id} class={s.stageClass}>
+                                    <span class="stage-dot">
+                                        <template if:true={s.isActive}>
+                                            <lightning-spinner alternative-text="En curso" size="small" variant="brand"></lightning-spinner>
+                                        </template>
+                                        <template if:false={s.isActive}>
+                                            <lightning-icon icon-name={s.iconName} size="xx-small" variant={s.iconVariant}></lightning-icon>
+                                        </template>
+                                    </span>
+                                    <div class="stage-text">
+                                        <p class="stage-label">{s.label}</p>
+                                        <p class="stage-detail">{s.detail}</p>
+                                    </div>
+                                </li>
+                            </template>
+                        </ul>
+                    </section>
+                </template>
+
+                <!-- ── Veredicto ───────────────────────────────────────────────── -->
+                <template if:true={showVerdict}>
+                    <section class="panel verdict">
+                        <div class="panel-title">
+                            <lightning-icon icon-name="utility:einstein" size="x-small"></lightning-icon>
+                            <span>Recomendacion del asesor</span>
+                        </div>
+
+                        <div class="verdict-head">
+                            <span class="badge badge-good">{recommendation.feasibility.verdict}</span>
+                            <p>{recommendation.feasibility.reason}</p>
+                        </div>
+
+                        <h4 class="reco-name">{recommendation.name} <span class="mono">({recommendation.sku})</span></h4>
+                        <p class="reco-summary">{recommendation.summary}</p>
+
+                        <ul class="reco-components">
+                            <template for:each={recommendation.components} for:item="rc">
+                                <li key={rc.sku}>
+                                    <span class="mono">{rc.sku}</span>
+                                    <span class="reco-comp-name">{rc.name}</span>
+                                    <span class="reco-comp-role">{rc.role}</span>
+                                </li>
+                            </template>
+                        </ul>
+
+                        <div class="addon">
+                            <lightning-icon icon-name="utility:add" size="x-small"></lightning-icon>
+                            <div>
+                                <p class="addon-title"><span class="mono">{recommendation.addOn.sku}</span> {recommendation.addOn.name} &middot; <strong>{recommendation.addOn.price}</strong></p>
+                                <p class="addon-note">{recommendation.addOn.note}</p>
+                            </div>
+                        </div>
+
+                        <div class="figures">
+                            <template for:each={recommendation.figures} for:item="f">
+                                <div key={f.label} class="figure">
+                                    <p class="figure-value">{f.value}</p>
+                                    <p class="figure-label">{f.label}</p>
+                                </div>
+                            </template>
+                        </div>
+
+                        <div class="guardrail">
+                            <lightning-icon icon-name="utility:shield" size="x-small"></lightning-icon>
+                            <div>
+                                <p class="guardrail-title">{recommendation.guardrail.title}</p>
+                                <p class="guardrail-body">{recommendation.guardrail.body}</p>
+                            </div>
+                        </div>
+
+                        <template if:false={isCreated}>
+                            <div class="cta">
+                                <lightning-button
+                                    variant="brand"
+                                    label={createLabel}
+                                    disabled={creating}
+                                    icon-name="utility:new"
+                                    onclick={handleCreate}></lightning-button>
+                                <p class="cta-note">Crea la oportunidad de retrofit y la oferta reales, con el motor de pricing de Revenue Cloud.</p>
+                            </div>
+                        </template>
+
+                        <template if:true={createError}>
+                            <div class="alert alert-bad">
+                                <lightning-icon icon-name="utility:error" size="x-small" variant="error"></lightning-icon>
+                                <span>{createError}</span>
+                            </div>
+                        </template>
+                    </section>
+                </template>
+
+                <!-- ── Resultado ───────────────────────────────────────────────── -->
+                <template if:true={isCreated}>
+                    <section class="panel created">
+                        <div class="panel-title">
+                            <lightning-icon icon-name="utility:success" size="x-small" variant="success"></lightning-icon>
+                            <span>{result.message}</span>
+                        </div>
+                        <div class="figures">
+                            <template for:each={resultFigures} for:item="f">
+                                <div key={f.id} class="figure">
+                                    <p class="figure-value">{f.value}</p>
+                                    <p class="figure-label">{f.label}</p>
+                                </div>
+                            </template>
+                        </div>
+                        <div class="created-actions">
+                            <lightning-button variant="brand" label="Abrir la oferta" onclick={handleOpenQuote}></lightning-button>
+                            <lightning-button label="Abrir la oportunidad" onclick={handleOpenOpportunity}></lightning-button>
+                            <template if:false={confirmingReset}>
+                                <lightning-button
+                                    class="reset-action"
+                                    variant="destructive-text"
+                                    icon-name="utility:undo"
+                                    label="Reiniciar la demo"
+                                    disabled={resetting}
+                                    onclick={handleResetRequest}></lightning-button>
+                            </template>
+                        </div>
+
+                        <template if:true={confirmingReset}>
+                            <div class="reset-confirm">
+                                <lightning-icon icon-name="utility:warning" size="x-small" variant="warning"></lightning-icon>
+                                <span class="reset-confirm-text">Esto borra la oportunidad y la oferta creadas para poder repetir la escena. No se puede deshacer.</span>
+                                <lightning-button
+                                    variant="destructive"
+                                    label={resetLabel}
+                                    disabled={resetting}
+                                    onclick={handleResetConfirm}></lightning-button>
+                                <lightning-button
+                                    label="Cancelar"
+                                    disabled={resetting}
+                                    onclick={handleResetCancel}></lightning-button>
+                            </div>
+                        </template>
+                    </section>
+                </template>
+            </template>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Recommended_SKU__c</fullName>
+    <description>Código del retrofit recomendado por el Advisor antes de configurar las líneas de la oferta (en el caso 174535, T100). Es la intención de producto del pipeline; el detalle configurable vive en la oferta.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>SKU del retrofit recomendado (p. ej. T100).</inlineHelpText>
+    <label>SKU recomendado</label>
+    <length>30</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

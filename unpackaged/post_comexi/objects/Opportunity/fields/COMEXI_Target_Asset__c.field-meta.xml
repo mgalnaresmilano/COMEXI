@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Target_Asset__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Máquina instalada (Asset) sobre la que se ejecuta el retrofit. Salesforce no trae ningún lookup estándar de Opportunity a Asset, así que sin este campo la oportunidad no sabe sobre qué máquina va el deal. El caso 174535 apunta a MSC000600 (Comexi Proslit S2 DS).</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Máquina instalada objeto de este retrofit.</inlineHelpText>
+    <label>Máquina objetivo</label>
+    <referenceTo>Asset</referenceTo>
+    <relationshipLabel>Oportunidades de retrofit</relationshipLabel>
+    <relationshipName>COMEXI_Retrofit_Opportunities</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Fuerza el repricing de la oferta. Sin este paso, createOrderFromQuote rechaza la oferta con "the prices aren't updated": la plataforma marca Quote.ValidationResult como TransactionIncomplete cada vez que alguien toca la cabecera, y en esta demo la cabecera se toca en cada escena.</description>
+        <name>Reprecificar_la_oferta</name>
+        <label>Reprecificar la oferta</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <actionName>COMEXI_QuoteRepriceService</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Crear_pedido_desde_la_oferta</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>quoteId</name>
+            <value>
+                <elementReference>$Record.SourceQuoteId</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>COMEXI_QuoteRepriceService</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <description>Crea el pedido desde la oferta que se firmo. Esta accion existe como accion de Flow y de REST pero no esta expuesta a Apex, y esa es la razon de que la escena 11 arranque con un flow y no con el trigger del contrato.</description>
+        <name>Crear_pedido_desde_la_oferta</name>
+        <label>Crear pedido desde la oferta</label>
+        <locationX>176</locationX>
+        <locationY>350</locationY>
+        <actionName>createOrderFromQuote</actionName>
+        <actionType>createOrderFromQuote</actionType>
+        <connector>
+            <targetReference>Sellar_y_activar_el_pedido</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>quoteRecordId</name>
+            <value>
+                <elementReference>$Record.SourceQuoteId</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>createOrderFromQuote</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <description>Copia al pedido el expediente del caso, la oportunidad y la oferta, y lo encola para activarlo. La activacion es lo que dispara submitOrder y genera el plan de fulfillment.</description>
+        <name>Sellar_y_activar_el_pedido</name>
+        <label>Sellar y activar el pedido</label>
+        <locationX>176</locationX>
+        <locationY>458</locationY>
+        <actionName>COMEXI_OrderFromContractService</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>contractId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>orderId</name>
+            <value>
+                <elementReference>Crear_pedido_desde_la_oferta.orderId</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>COMEXI_OrderFromContractService</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>67.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description>Al firmar el contrato del retrofit, crea el pedido desde la oferta, le sella el expediente y lo activa. La activacion dispara RLM_Submit_Order_on_Activation, que llama a submitOrder y descompone el pedido en el plan de fulfillment: material a SAP, intervencion a operaciones y anticipo a finanzas, con el arranque de ingenieria bloqueado hasta que se confirma el cobro.</description>
+    <environments>Default</environments>
+    <interviewLabel>COMEXI Order From Signed Contract {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>COMEXI Order From Signed Contract</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Signed</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>COMEXI_Generated_By_Advisor__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>SourceQuoteId</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>Contract</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <scheduledPaths>
+            <description>Camino asincrono: la transaccion que esta firmando el contrato no tiene que cargar con la creacion del pedido ni con la descomposicion.</description>
+            <connector>
+                <targetReference>Reprecificar_la_oferta</targetReference>
+            </connector>
+            <pathType>AsyncAfterCommit</pathType>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

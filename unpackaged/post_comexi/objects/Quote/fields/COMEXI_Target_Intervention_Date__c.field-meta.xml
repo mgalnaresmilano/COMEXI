@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Target_Intervention_Date__c</fullName>
+    <description>Fecha objetivo de la parada de línea propuesta en la oferta. Es la fecha que el cliente tiene que confirmar con producción antes de aceptar.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Fecha objetivo de la parada de línea.</inlineHelpText>
+    <label>Fecha objetivo de intervención</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

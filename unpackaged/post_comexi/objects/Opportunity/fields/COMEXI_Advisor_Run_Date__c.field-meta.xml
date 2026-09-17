@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Advisor_Run_Date__c</fullName>
+    <description>Fecha y hora en que el COMEXI Retrofit Advisor generó el análisis que dio lugar a esta oportunidad.</description>
+    <externalId>false</externalId>
+    <label>Fecha de análisis del Advisor</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

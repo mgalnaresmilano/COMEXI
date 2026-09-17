@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Country_Risk_Pct__c</fullName>
+    <description>Riesgo país aplicado sobre la oferta en función del destino de la intervención. Hoy es un criterio que vive en la cabeza del deal desk.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Riesgo país aplicado según el destino de la intervención.</inlineHelpText>
+    <label>Riesgo país %</label>
+    <precision>5</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

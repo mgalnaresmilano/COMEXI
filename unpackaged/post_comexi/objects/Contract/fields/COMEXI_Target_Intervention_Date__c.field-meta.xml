@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Target_Intervention_Date__c</fullName>
+    <description>Fecha comprometida de intervencion en planta. Es el compromiso que hoy vive en el planificador de operaciones y que aqui queda en el contrato firmado.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Fecha comprometida de intervencion en planta.</inlineHelpText>
+    <label>Fecha objetivo de intervencion</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

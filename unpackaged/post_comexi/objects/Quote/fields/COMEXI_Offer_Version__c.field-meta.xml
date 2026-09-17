@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Offer_Version__c</fullName>
+    <description>Número de versión de la oferta enviada al cliente. Sustituye al sufijo que hoy se teclea a mano en el nombre del fichero compartido.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Versión de la oferta enviada al cliente.</inlineHelpText>
+    <label>Versión de oferta</label>
+    <precision>3</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

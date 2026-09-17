@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Max_Speed_Mpm__c</fullName>
+    <description>Velocidad máxima de la máquina en metros por minuto según ficha técnica. Es el argumento de valor de los retrofits de accionamiento y control: recuperar velocidad nominal perdida sin sustituir la máquina.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Velocidad máxima de ficha técnica, en metros por minuto.</inlineHelpText>
+    <label>Velocidad máxima (m/min)</label>
+    <precision>4</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

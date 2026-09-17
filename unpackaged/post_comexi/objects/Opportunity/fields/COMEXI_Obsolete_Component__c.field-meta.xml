@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Obsolete_Component__c</fullName>
+    <description>Componente de la máquina que ha quedado obsoleto y motiva el retrofit. En el caso 174535 es el PC industrial con Windows 10 fuera de soporte (MSC000600-PC).</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Componente obsoleto que justifica el retrofit.</inlineHelpText>
+    <label>Componente obsoleto</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Expenses_Owner__c</fullName>
+    <description>Quien asume los desplazamientos y la estancia del personal tecnico.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Quien asume desplazamientos y estancia.</inlineHelpText>
+    <label>Gastos a cargo de</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Comexi</fullName>
+                <default>false</default>
+                <label>Comexi</label>
+            </value>
+            <value>
+                <fullName>Cliente</fullName>
+                <default>false</default>
+                <label>Cliente</label>
+            </value>
+            <value>
+                <fullName>Compartido</fullName>
+                <default>false</default>
+                <label>Compartido</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Retrofit_Eligible__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Marca si la máquina admite el retrofit estándar de su línea. Cuando está desmarcada la salida no es "no hay negocio" sino máquina nueva, que es exactamente lo que pasó con el precedente perdido del Advisor.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Marca si la máquina admite el retrofit estándar de su línea.</inlineHelpText>
+    <label>Elegible para retrofit</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

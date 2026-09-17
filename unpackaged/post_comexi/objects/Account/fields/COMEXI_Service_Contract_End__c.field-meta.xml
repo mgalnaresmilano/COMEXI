@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Service_Contract_End__c</fullName>
+    <description>Fecha de fin del contrato de servicio vigente. Permite anticipar la renovación y agrupar el retrofit con ella en la misma conversación comercial.</description>
+    <externalId>false</externalId>
+    <label>Fin del contrato de servicio</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

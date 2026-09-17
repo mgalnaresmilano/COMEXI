@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Advisor_Confidence__c</fullName>
+    <description>Nivel de confianza del COMEXI Retrofit Advisor en la recomendación de retrofit. Refuerza la narrativa de que el agente no solo propone, sino que cuantifica su certeza.</description>
+    <externalId>false</externalId>
+    <label>Confianza del Advisor</label>
+    <precision>3</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

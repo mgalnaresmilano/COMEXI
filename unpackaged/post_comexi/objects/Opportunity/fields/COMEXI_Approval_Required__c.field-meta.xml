@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Approval_Required__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Marca si el deal necesita aprobación por margen: se activa cuando el margen de la oferta cae por debajo del objetivo del producto. Enlaza el retrofit con el proceso de aprobación de la escena 08.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Se marca cuando el margen cae por debajo del objetivo y requiere aprobación.</inlineHelpText>
+    <label>Requiere aprobación</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

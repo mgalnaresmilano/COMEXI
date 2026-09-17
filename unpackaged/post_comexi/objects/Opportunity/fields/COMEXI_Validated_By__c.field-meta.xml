@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Validated_By__c</fullName>
+    <description>Quién validó la viabilidad del retrofit. En la demo lo rellena el COMEXI Retrofit Advisor (Agentforce); en producción sería el ingeniero o el rol que asuma el filtro técnico.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Responsable de validar la viabilidad del retrofit.</inlineHelpText>
+    <label>Validado por</label>
+    <length>120</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

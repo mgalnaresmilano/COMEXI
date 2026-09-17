@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_RALF_Pct__c</fullName>
+    <description>Porcentaje RALF aplicado por la procedura de precios (3,00% en el escandallo de COMEXI).</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Porcentaje RALF aplicado por la procedura de precios.</inlineHelpText>
+    <label>RALF %</label>
+    <precision>5</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

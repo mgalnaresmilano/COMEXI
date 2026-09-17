@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Down_Payment_Status__c</fullName>
+    <description>Estado del anticipo asociado a esta oferta. Hace visible en el registro una dependencia que hoy solo existe en cadenas de correo entre operaciones y finanzas.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Estado del anticipo de esta oferta.</inlineHelpText>
+    <label>Estado del anticipo</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Pendiente</fullName>
+                <default>true</default>
+                <label>Pendiente</label>
+            </value>
+            <value>
+                <fullName>Solicitado</fullName>
+                <default>false</default>
+                <label>Solicitado</label>
+            </value>
+            <value>
+                <fullName>Cobrado</fullName>
+                <default>false</default>
+                <label>Cobrado</label>
+            </value>
+            <value>
+                <fullName>Exencion autorizada</fullName>
+                <default>false</default>
+                <label>Exención autorizada</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

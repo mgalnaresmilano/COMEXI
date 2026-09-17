@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Representative_Name__c</fullName>
+    <description>Representante local que atiende la cuenta. Es quien cobra la comisión que el escandallo añade al precio de venta.</description>
+    <externalId>false</externalId>
+    <label>Representante local</label>
+    <length>80</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

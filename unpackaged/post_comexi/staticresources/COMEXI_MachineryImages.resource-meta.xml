@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StaticResource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <cacheControl>Public</cacheControl>
+    <contentType>application/zip</contentType>
+    <description>Fotos reales de las maquinas de Comexi Maquinaria (un JPEG 640x480 por SKU). Generadas por scripts/build_comexi_machinery_images.py; referenciadas desde Product2.DisplayUrl como /resource/COMEXI_MachineryImages/&lt;SKU&gt;.jpg</description>
+</StaticResource>

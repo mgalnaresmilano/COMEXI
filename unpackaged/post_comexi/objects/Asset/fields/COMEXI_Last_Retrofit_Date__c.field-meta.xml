@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Last_Retrofit_Date__c</fullName>
+    <description>Fecha del último retrofit aplicado a la máquina. Junto con los SKUs aplicados cierra el ciclo de la escena 12: cada venta mejora la calidad del dato sobre el que se calculará la siguiente viabilidad.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Fecha del último retrofit aplicado a esta máquina.</inlineHelpText>
+    <label>Último retrofit</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Retrofit_Type__c</fullName>
+    <description>Tipología del retrofit según las etiquetas que usa COMEXI: CTEC (cambio tecnológico), RET_OBS (obsolescencia), RET_NEW_FEATURES (nuevas funciones), RET_NEW_DESIGNS (nuevos diseños), RET_MAINT (mantenimiento). Permite reporting de pipeline por tipo de retrofit.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Naturaleza del retrofit según las etiquetas de COMEXI.</inlineHelpText>
+    <label>Tipo de retrofit</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>CTEC</fullName>
+                <default>false</default>
+                <label>CTEC - Cambio tecnológico</label>
+            </value>
+            <value>
+                <fullName>RET_OBS</fullName>
+                <default>false</default>
+                <label>RET_OBS - Obsolescencia</label>
+            </value>
+            <value>
+                <fullName>RET_NEW_FEATURES</fullName>
+                <default>false</default>
+                <label>RET_NEW_FEATURES - Nuevas funciones</label>
+            </value>
+            <value>
+                <fullName>RET_NEW_DESIGNS</fullName>
+                <default>false</default>
+                <label>RET_NEW_DESIGNS - Nuevos diseños</label>
+            </value>
+            <value>
+                <fullName>RET_MAINT</fullName>
+                <default>false</default>
+                <label>RET_MAINT - Mantenimiento</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

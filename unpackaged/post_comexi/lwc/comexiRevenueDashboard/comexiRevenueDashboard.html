@@ -1,0 +1,491 @@
+<template>
+    <lightning-card icon-name="standard:dashboard">
+        <span slot="title" class="card-title">{cardTitle}</span>
+
+        <div slot="actions" class="header-actions">
+            <template if:true={lastRefresh}>
+                <span class="refresh-stamp">Actualitzat a les {lastRefresh}</span>
+            </template>
+            <lightning-button-icon icon-name="utility:refresh" alternative-text="Actualitzar" title="Actualitzar" onclick={handleRefresh}></lightning-button-icon>
+            <lightning-button label="Nova oferta" icon-name="utility:add" onclick={handleNewOffer} class="slds-m-left_x-small"></lightning-button>
+            <lightning-button label="Exportar" icon-name="utility:download" onclick={handleExport} class="slds-m-left_xx-small"></lightning-button>
+        </div>
+
+        <div class={bodyClass}>
+            <!-- Toolbar: rol + filtres -->
+            <div class="toolbar">
+                <div class="role-switch" role="tablist">
+                    <button class={commercialTabClass} data-role="commercial" onclick={handleRoleTab}>
+                        <lightning-icon icon-name="standard:user" size="x-small"></lightning-icon>
+                        <span>Comercial</span>
+                    </button>
+                    <button class={managerTabClass} data-role="manager" onclick={handleRoleTab}>
+                        <lightning-icon icon-name="standard:people" size="x-small"></lightning-icon>
+                        <span>Cap de servei</span>
+                    </button>
+                </div>
+
+                <div class="filters">
+                    <lightning-combobox data-filter="period" label="Periode" variant="label-hidden" value={filters.period} options={periodOptions} onchange={handleFilter}></lightning-combobox>
+                    <lightning-combobox data-filter="line" label="Linia" variant="label-hidden" value={filters.line} options={lineOptions} onchange={handleFilter}></lightning-combobox>
+                    <lightning-combobox data-filter="country" label="Pais" variant="label-hidden" value={filters.country} options={countryOptions} onchange={handleFilter}></lightning-combobox>
+                    <template if:true={isManager}>
+                        <lightning-combobox data-filter="rep" label="Comercial" variant="label-hidden" value={filters.rep} options={repOptions} onchange={handleFilter}></lightning-combobox>
+                    </template>
+                </div>
+            </div>
+
+            <template if:true={isLoading}>
+                <div class="loading-container">
+                    <lightning-spinner size="medium" alternative-text="Carregant"></lightning-spinner>
+                </div>
+            </template>
+
+            <template if:false={isLoading}>
+                <!-- KPI grid -->
+                <div class="metrics-grid">
+                    <template for:each={kpis} for:item="k">
+                        <div key={k.key} class={k.cardClass} data-key={k.key} onclick={handleTileClick}>
+                            <div class="metric-top">
+                                <div class={k.iconWrapClass}>
+                                    <lightning-icon icon-name={k.icon} size="small" variant="inverse"></lightning-icon>
+                                </div>
+                                <span class={k.deltaClass}>{k.deltaLabel}</span>
+                            </div>
+                            <div class="metric-value">{k.value}</div>
+                            <div class="metric-label">{k.label}</div>
+                            <div class="metric-sub">{k.sub}</div>
+                            <template if:true={k.showProgress}>
+                                <div class="progress-track">
+                                    <div class="progress-fill" style={k.progressStyle}></div>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                </div>
+
+                <!-- Panel de drill-down -->
+                <template if:true={drilldownInfo}>
+                    <div class="drilldown">
+                        <lightning-icon icon-name="utility:zoomin" size="x-small"></lightning-icon>
+                        <span class="drilldown-label">{drilldownInfo.label}:</span>
+                        <span class="drilldown-value">{drilldownInfo.value}</span>
+                        <span class="drilldown-sub">{drilldownInfo.sub}</span>
+                    </div>
+                </template>
+
+                <!-- ================= VISTA CAP DE SERVEI ================= -->
+                <template if:true={isManager}>
+                    <div class="charts-grid">
+                        <!-- Marge per familia -->
+                        <div class="panel">
+                            <div class="panel-title">Marge mitja per familia</div>
+                            <div class="bar-list">
+                                <template for:each={familyMarginDecorated} for:item="f">
+                                    <div key={f.key} class="bar-row is-clickable" data-dim="family" data-key={f.key} data-label={f.label} onclick={handleChartClick} title="Clic per veure les ofertes">
+                                        <span class="bar-label">{f.label}</span>
+                                        <div class="bar-track">
+                                            <div class={f.barClass} style={f.barStyle}></div>
+                                        </div>
+                                        <span class="bar-value">{f.valueLabel}</span>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+
+                        <!-- Pipeline per linia (donut) -->
+                        <div class="panel">
+                            <div class="panel-title">Pipeline per linia de maquina</div>
+                            <div class="donut-wrap">
+                                <div class="donut">
+                                    <svg class="donut-svg" viewBox="0 0 42 42">
+                                        <circle class="donut-ring-bg" cx="21" cy="21" r="15.91549431" fill="transparent"></circle>
+                                        <template for:each={donutSegments} for:item="s">
+                                            <circle key={s.key} class="donut-seg is-clickable" cx="21" cy="21" r="15.91549431" fill="transparent"
+                                                stroke={s.color} stroke-width="4.5" stroke-dasharray={s.dasharray} stroke-dashoffset={s.dashoffset}
+                                                data-dim="line" data-key={s.key} data-label={s.label} onclick={handleChartClick}>
+                                                <title>{s.label}: {s.amountLabel} ({s.pctLabel})</title>
+                                            </circle>
+                                        </template>
+                                    </svg>
+                                    <div class="donut-hole">
+                                        <span class="donut-total">{lineTotalLabel}</span>
+                                        <span class="donut-caption">pipeline</span>
+                                    </div>
+                                </div>
+                                <ul class="legend">
+                                    <template for:each={lineSegments} for:item="s">
+                                        <li key={s.key} class="is-clickable" data-dim="line" data-key={s.key} data-label={s.label} onclick={handleChartClick} title="Clic per veure les ofertes">
+                                            <span class="swatch" style={s.swatchStyle}></span>
+                                            <span class="legend-label">{s.label}</span>
+                                            <span class="legend-value">{s.amountLabel} ({s.pctLabel})</span>
+                                        </li>
+                                    </template>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Pipeline per pais -->
+                        <div class="panel">
+                            <div class="panel-title">Pipeline per pais</div>
+                            <div class="bar-list">
+                                <template for:each={countryPipeline} for:item="c">
+                                    <div key={c.key} class="bar-row is-clickable" data-dim="country" data-key={c.key} data-label={c.label} onclick={handleChartClick} title="Clic per veure les ofertes">
+                                        <span class="bar-label">
+                                            {c.label}
+                                            <template if:true={c.hasRep}><span class="rep-badge">{c.repBadge}</span></template>
+                                        </span>
+                                        <div class="bar-track">
+                                            <div class="bar bar-brand" style={c.barStyle}></div>
+                                        </div>
+                                        <span class="bar-value">{c.amountLabel}</span>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+
+                        <!-- Embut de conversio -->
+                        <div class="panel">
+                            <div class="panel-title">Embut de conversio</div>
+                            <div class="funnel">
+                                <template for:each={funnel} for:item="s">
+                                    <div key={s.key} class="funnel-row is-clickable" data-key={s.key} data-label={s.label} onclick={handleFunnelClick} title={s.hint}>
+                                        <span class="funnel-label">{s.label}</span>
+                                        <div class="funnel-bar" style={s.barStyle}>{s.count}</div>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+
+                        <!-- Tendencia mensual -->
+                        <div class="panel panel-wide">
+                            <div class="panel-title">Tendencia mensual (bookings i marge)</div>
+                            <div class="trend">
+                                <template for:each={trend} for:item="m">
+                                    <div key={m.key} class="trend-col is-clickable" data-dim="month" data-key={m.label} data-label={m.label} onclick={handleChartClick} title="Clic per veure les ofertes">
+                                        <div class="trend-bar-wrap">
+                                            <span class="trend-margin">{m.marginLabel}</span>
+                                            <div class="trend-bar" style={m.barStyle}></div>
+                                        </div>
+                                        <span class="trend-amount">{m.bookingsLabel}</span>
+                                        <span class="trend-month">{m.label}</span>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+
+                        <!-- Ranking de comercials -->
+                        <div class="panel panel-wide">
+                            <div class="panel-title">Ranking de comercials</div>
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th><th>Comercial</th><th class="num">Bookings</th><th class="num">Ofertes</th><th class="num">Marge</th><th class="num">Descompte</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={repRanking} for:item="r">
+                                        <tr key={r.key}>
+                                            <td class="rank">{r.rank}</td>
+                                            <td>{r.rep}</td>
+                                            <td class="num">{r.bookingsLabel}</td>
+                                            <td class="num">{r.offers}</td>
+                                            <td class="num"><span class={r.marginTone}>{r.marginLabel}</span></td>
+                                            <td class="num">{r.discountLabel}</td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Cua d'aprovacions -->
+                    <div class="panel">
+                        <div class="panel-title">
+                            Cua d'aprovacions
+                            <span class="panel-badge">{approvalQueue.length}</span>
+                        </div>
+                        <template if:true={hasApprovals}>
+                            <table class="data-table">
+                                <thead>
+                                    <tr><th>Oferta</th><th>Compte</th><th class="num">Import</th><th class="num">Marge</th><th class="num">Antiguitat</th><th>Accions</th></tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={approvalQueue} for:item="o">
+                                        <tr key={o.id} class={o.rowClass}>
+                                            <td><a data-id={o.id} onclick={handleRowClick}>{o.name}</a></td>
+                                            <td>{o.account}</td>
+                                            <td class="num">{o.amountLabel}</td>
+                                            <td class="num"><span class={o.marginTone}>{o.marginLabel}</span></td>
+                                            <td class="num">{o.ageLabel}</td>
+                                            <td class="actions-cell">
+                                                <lightning-button label="Aprovar" variant="brand" data-id={o.id} onclick={handleApprove} class="slds-m-right_xx-small"></lightning-button>
+                                                <lightning-button label="Rebutjar" variant="destructive-text" data-id={o.id} onclick={handleReject}></lightning-button>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </template>
+                        <template if:false={hasApprovals}>
+                            <div class="empty-state">
+                                <lightning-icon icon-name="utility:success" variant="success" size="small"></lightning-icon>
+                                <span>No hi ha ofertes pendents d'aprovacio.</span>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- Ofertes en risc de marge + campanya -->
+                    <div class="charts-grid">
+                        <div class="panel">
+                            <div class="panel-title">Ofertes en risc de marge (&lt; {marginFloorLabel})</div>
+                            <table class="data-table">
+                                <thead>
+                                    <tr><th>Oferta</th><th>Compte</th><th class="num">Marge</th><th class="num">Descompte</th></tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={marginRisk} for:item="o">
+                                        <tr key={o.id} class="data-row">
+                                            <td><a data-id={o.id} onclick={handleRowClick}>{o.name}</a></td>
+                                            <td>{o.account}</td>
+                                            <td class="num"><span class={o.marginTone}>{o.marginLabel}</span></td>
+                                            <td class="num">{o.discountLabel}</td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="panel">
+                            <div class="panel-title">
+                                Campanya de retrofit proposada
+                                <lightning-button label="Veure campanya" variant="brand-outline" onclick={openCampaign} class="panel-title-action"></lightning-button>
+                            </div>
+                            <div class="campaign-teaser">
+                                <lightning-icon icon-name="standard:einstein_next_best_action" size="medium"></lightning-icon>
+                                <p>L'agent ha detectat <strong>maquines amb component obsolet</strong> a la base instal.lada i proposa una oferta preconfigurada per maquina.</p>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- ================= VISTA COMERCIAL ================= -->
+                <template if:true={isCommercial}>
+                    <div class="charts-grid">
+                        <div class="panel panel-wide">
+                            <div class="panel-title">La meva tendencia de bookings</div>
+                            <div class="trend">
+                                <template for:each={trend} for:item="m">
+                                    <div key={m.key} class="trend-col is-clickable" data-dim="month" data-key={m.label} data-label={m.label} onclick={handleChartClick} title="Clic per veure les ofertes">
+                                        <div class="trend-bar-wrap">
+                                            <span class="trend-margin">{m.marginLabel}</span>
+                                            <div class="trend-bar" style={m.barStyle}></div>
+                                        </div>
+                                        <span class="trend-amount">{m.bookingsLabel}</span>
+                                        <span class="trend-month">{m.label}</span>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Les meves ofertes actives -->
+                    <div class="panel">
+                        <div class="panel-title">Les meves ofertes actives</div>
+                        <table class="data-table">
+                            <thead>
+                                <tr><th>Oferta</th><th>Compte</th><th>Maquina</th><th class="num">Import</th><th class="num">Marge</th><th>Estat</th><th class="num">Antiguitat</th></tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={activeOffers} for:item="o">
+                                    <tr key={o.id} class={o.rowClass}>
+                                        <td><a data-id={o.id} onclick={handleRowClick}>{o.name}</a></td>
+                                        <td>{o.account}</td>
+                                        <td>{o.asset}</td>
+                                        <td class="num">{o.amountLabel}</td>
+                                        <td class="num"><span class={o.marginTone}>{o.marginLabel}</span></td>
+                                        <td><span class={o.statusTone}>{o.status}</span></td>
+                                        <td class="num">{o.ageLabel}</td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Casos sense oferta -->
+                    <div class="panel">
+                        <div class="panel-title">Casos de servei sense oferta</div>
+                        <table class="data-table">
+                            <thead>
+                                <tr><th>Cas</th><th>Assumpte</th><th>Compte</th><th>Maquina</th><th>Prioritat</th><th></th></tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={cases} for:item="c">
+                                    <tr key={c.id} class="data-row">
+                                        <td>{c.id}</td>
+                                        <td>{c.subject}</td>
+                                        <td>{c.account}</td>
+                                        <td>{c.asset}</td>
+                                        <td>{c.priority}</td>
+                                        <td><lightning-button label="Crear oferta" variant="brand" data-id={c.id} onclick={handleCreateOffer}></lightning-button></td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </template>
+            </template>
+        </div>
+    </lightning-card>
+
+    <!-- Modal: waterfall de l'escandall -->
+    <template if:true={showWaterfall}>
+        <div class="modal-backdrop" onclick={closeWaterfall}></div>
+        <section class="modal" role="dialog" aria-modal="true">
+            <header class="modal-header">
+                <h2>{waterfallTitle}</h2>
+                <lightning-button-icon icon-name="utility:close" variant="bare" alternative-text="Tancar" onclick={closeWaterfall}></lightning-button-icon>
+            </header>
+            <div class="modal-body">
+                <table class="wf-table">
+                    <template for:each={waterfall} for:item="w">
+                        <tr key={w.label} class={w.rowClass}>
+                            <td class="wf-label">{w.label}</td>
+                            <td class="wf-value">{w.valueLabel}</td>
+                        </tr>
+                    </template>
+                </table>
+            </div>
+        </section>
+    </template>
+
+    <!-- Modal: detall del grafic (dades darrere) -->
+    <template if:true={showDetail}>
+        <div class="modal-backdrop" onclick={closeDetail}></div>
+        <section class="modal modal-wide" role="dialog" aria-modal="true">
+            <header class="modal-header">
+                <div>
+                    <h2>{detailTitle}</h2>
+                    <span class="modal-subtitle">{detailSubtitle}</span>
+                </div>
+                <lightning-button-icon icon-name="utility:close" variant="bare" alternative-text="Tancar" onclick={closeDetail}></lightning-button-icon>
+            </header>
+            <div class="modal-body">
+                <template if:true={hasDetailRows}>
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Oferta</th><th>Compte</th><th>Linia</th><th>Pais</th><th>Estat</th><th class="num">Import</th><th class="num">Marge</th></tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={detailRows} for:item="o">
+                                <tr key={o.id} class={o.rowClass}>
+                                    <td><a data-id={o.id} onclick={handleRowClick}>{o.name}</a></td>
+                                    <td>{o.account}</td>
+                                    <td>{o.lineLabel}</td>
+                                    <td>{o.countryLabel}</td>
+                                    <td><span class={o.statusTone}>{o.status}</span></td>
+                                    <td class="num">{o.amountLabel}</td>
+                                    <td class="num"><span class={o.marginTone}>{o.marginLabel}</span></td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </template>
+                <template if:false={hasDetailRows}>
+                    <div class="empty-state">
+                        <lightning-icon icon-name="utility:info" size="small"></lightning-icon>
+                        <span>No hi ha ofertes per a aquesta seleccio amb els filtres actuals.</span>
+                    </div>
+                </template>
+            </div>
+        </section>
+    </template>
+
+    <!-- Modal: assets i casos de retrofit (primera etapa de l'embut) -->
+    <template if:true={showRetrofit}>
+        <div class="modal-backdrop" onclick={closeRetrofit}></div>
+        <section class="modal modal-wide" role="dialog" aria-modal="true">
+            <header class="modal-header">
+                <div>
+                    <h2>Assets i casos de retrofit</h2>
+                    <span class="modal-subtitle">{retrofitSubtitle}</span>
+                </div>
+                <lightning-button-icon icon-name="utility:close" variant="bare" alternative-text="Tancar" onclick={closeRetrofit}></lightning-button-icon>
+            </header>
+            <div class="modal-body">
+                <template if:true={hasRetrofitRows}>
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Maquina</th><th>Model</th><th>Component obsolet</th><th>Compte</th><th>Cas</th><th>Assumpte</th><th>Prioritat</th><th class="num">Potencial</th></tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={retrofitRows} for:item="r">
+                                <tr key={r.id} class={r.rowClass}>
+                                    <td>
+                                        <template if:true={r.isLive}>
+                                            <a class="record-link" data-id={r.id} onclick={handleOpenAsset} title="Obrir la fitxa de la maquina">{r.asset}</a>
+                                        </template>
+                                        <template if:false={r.isLive}>
+                                            <span>{r.asset}</span>
+                                            <span class="pill pill-mock">Mock</span>
+                                        </template>
+                                    </td>
+                                    <td>{r.model}</td>
+                                    <td>{r.component}</td>
+                                    <td>{r.account}</td>
+                                    <td>
+                                        <template if:true={r.hasCaseRecord}>
+                                            <a class="record-link" data-id={r.id} onclick={handleOpenCase} title={r.caseHint}>{r.id}</a>
+                                        </template>
+                                        <template if:false={r.hasCaseRecord}>
+                                            <span>{r.id}</span>
+                                        </template>
+                                    </td>
+                                    <td>{r.subject}</td>
+                                    <td>{r.priority}</td>
+                                    <td class="num">{r.potentialLabel}</td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </template>
+                <template if:false={hasRetrofitRows}>
+                    <div class="empty-state">
+                        <lightning-icon icon-name="utility:info" size="small"></lightning-icon>
+                        <span>No hi ha casos de retrofit per a aquesta seleccio amb els filtres actuals.</span>
+                    </div>
+                </template>
+            </div>
+        </section>
+    </template>
+
+    <!-- Modal: campanya de retrofit -->
+    <template if:true={showCampaign}>
+        <div class="modal-backdrop" onclick={closeCampaign}></div>
+        <section class="modal modal-wide" role="dialog" aria-modal="true">
+            <header class="modal-header">
+                <h2>Campanya de retrofit - maquines amb component obsolet</h2>
+                <lightning-button-icon icon-name="utility:close" variant="bare" alternative-text="Tancar" onclick={closeCampaign}></lightning-button-icon>
+            </header>
+            <div class="modal-body">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Asset</th><th>Compte</th><th>Model</th><th>Component obsolet</th><th class="num">Any</th><th class="num">Potencial</th></tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={campaign} for:item="m">
+                            <tr key={m.asset} class="data-row">
+                                <td>{m.asset}</td>
+                                <td>{m.account}</td>
+                                <td>{m.model}</td>
+                                <td>{m.component}</td>
+                                <td class="num">{m.installYear}</td>
+                                <td class="num">{m.potentialLabel}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </template>
+</template>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Last_Intervention_Date__c</fullName>
+    <description>Fecha de la última intervención de un técnico Comexi sobre esta máquina. El campo equivalente en Account da la relación con el cliente; este da la de la máquina concreta, que es la que el vendedor necesita antes de planificar el viaje.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Última vez que un técnico Comexi intervino sobre esta máquina.</inlineHelpText>
+    <label>Última intervención</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Warranty_Uplift_Pct__c</fullName>
+    <description>Uplift de garantía aplicado por la procedura de precios (2,60% en el escandallo de COMEXI). Hacerlo visible en la oferta demuestra que el escandallo es configuración y no código.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Uplift de garantía aplicado por la procedura de precios.</inlineHelpText>
+    <label>Uplift garantía %</label>
+    <precision>5</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

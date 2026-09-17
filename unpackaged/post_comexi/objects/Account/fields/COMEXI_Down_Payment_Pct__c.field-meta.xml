@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Down_Payment_Pct__c</fullName>
+    <description>Porcentaje de pago anticipado exigido a este cliente. Es el hito que hoy vive en correos a Finanzas y que bloquea el arranque de ingeniería hasta confirmar el cobro.</description>
+    <externalId>false</externalId>
+    <label>Pago anticipado %</label>
+    <precision>5</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

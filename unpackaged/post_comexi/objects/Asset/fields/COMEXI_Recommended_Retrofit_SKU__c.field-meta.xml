@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Recommended_Retrofit_SKU__c</fullName>
+    <description>SKU del retrofit recomendado para esta máquina, validado contra el catálogo real. Es el antídoto al "Codi P271 no trobat" del discovery: el código que se propone existe como Product2, no lo ha inventado una celda ni un modelo de lenguaje.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>SKU de retrofit recomendado. Tiene que existir en el catálogo.</inlineHelpText>
+    <label>SKU de retrofit recomendado</label>
+    <length>40</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

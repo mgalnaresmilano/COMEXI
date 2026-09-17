@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_OS_Installed__c</fullName>
+    <description>Sistema operativo del PC industrial de línea. Es el disparador del retrofit T100 del caso 174535: el fin de soporte deja la máquina sin parches y acaba desconectada de la red corporativa aunque siga produciendo.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Sistema operativo que corre hoy el PC de la máquina.</inlineHelpText>
+    <label>Sistema operativo instalado</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Windows XP</fullName>
+                <default>false</default>
+                <label>Windows XP</label>
+            </value>
+            <value>
+                <fullName>Windows 7</fullName>
+                <default>false</default>
+                <label>Windows 7</label>
+            </value>
+            <value>
+                <fullName>Windows 10</fullName>
+                <default>false</default>
+                <label>Windows 10</label>
+            </value>
+            <value>
+                <fullName>Windows 11</fullName>
+                <default>false</default>
+                <label>Windows 11</label>
+            </value>
+            <value>
+                <fullName>No aplica</fullName>
+                <default>false</default>
+                <label>No aplica</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,231 @@
+<template>
+    <lightning-card icon-name="standard:asset_relationship">
+        <span slot="title" class="card-title">Ficha de la maquina</span>
+
+        <div class="machine-body">
+            <template if:true={isLoading}>
+                <div class="loading">
+                    <lightning-spinner alternative-text="Cargando" size="small"></lightning-spinner>
+                </div>
+            </template>
+
+            <template if:true={loadError}>
+                <div class="alert alert-bad">
+                    <lightning-icon icon-name="utility:error" size="x-small" variant="error"></lightning-icon>
+                    <span>{loadError}</span>
+                </div>
+            </template>
+
+            <template if:true={hasMachine}>
+                <div class="layout">
+                    <!-- ── Columna izquierda: foto y placa ─────────────────────── -->
+                    <div class="col-left">
+                        <template if:true={hasImage}>
+                            <div class="photo">
+                                <img src={machine.imageUrl} alt={headline} />
+                                <span class="photo-tag">{machine.sku}</span>
+                            </div>
+                        </template>
+
+                        <div class="plate">
+                            <p class="eyebrow">Comexi &middot; base instalada</p>
+                            <h2 class="plate-title">{headline}</h2>
+                            <p class="plate-account">
+                                <a onclick={handleOpenAccount}>{machine.accountName}</a>
+                                <template if:true={serviceBadge}>
+                                    <span class={serviceBadge.badgeClass}>{serviceBadge.label}</span>
+                                </template>
+                            </p>
+
+                            <dl class="plate-grid">
+                                <template for:each={plate} for:item="row">
+                                    <div key={row.id} class="plate-row">
+                                        <dt>{row.label}</dt>
+                                        <dd>{row.value}</dd>
+                                    </div>
+                                </template>
+                            </dl>
+                        </div>
+
+                        <div class="specs">
+                            <template for:each={specs} for:item="s">
+                                <div key={s.id} class="spec">
+                                    <span class="spec-label">{s.label}</span>
+                                    <span class="spec-value">{s.value}</span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+
+                    <!-- ── Columna derecha: estado, componentes e historial ────── -->
+                    <div class="col-right">
+                        <div class="kpis">
+                            <template for:each={kpis} for:item="k">
+                                <div key={k.id} class={k.tileClass}>
+                                    <p class="kpi-value">{k.value}<span class="kpi-unit">{k.unit}</span></p>
+                                    <p class="kpi-label">{k.label}</p>
+                                </div>
+                            </template>
+                        </div>
+
+                        <!-- Obsolescencia: el porque de que haya un caso abierto. -->
+                        <template if:true={showObsolescence}>
+                            <div class={obsolescence.bandClass}>
+                                <div class="obsolescence-head">
+                                    <lightning-icon icon-name="utility:warning" size="x-small"></lightning-icon>
+                                    <h3>Obsolescencia</h3>
+                                    <span class={obsolescence.riskClass}>{obsolescence.risk}</span>
+                                </div>
+                                <div class="obsolescence-grid">
+                                    <div class="obs-item">
+                                        <span class="obs-label">Sistema operativo</span>
+                                        <span class="obs-value">{obsolescence.os}</span>
+                                    </div>
+                                    <template if:true={obsolescence.hasSupportEnd}>
+                                        <div class="obs-item">
+                                            <span class="obs-label">{obsolescence.supportLabel}</span>
+                                            <span class="obs-value">
+                                                <lightning-formatted-date-time
+                                                    value={obsolescence.supportEnd}
+                                                    year="numeric"
+                                                    month="long"
+                                                    day="2-digit"
+                                                ></lightning-formatted-date-time>
+                                            </span>
+                                        </div>
+                                    </template>
+                                    <template if:true={obsolescence.component}>
+                                        <div class="obs-item obs-item-wide">
+                                            <span class="obs-label">Componente afectado</span>
+                                            <span class="obs-value">{obsolescence.component}</span>
+                                        </div>
+                                    </template>
+                                </div>
+
+                                <template if:true={viability}>
+                                    <div class="viability">
+                                        <span class={viability.pillClass}>
+                                            <lightning-icon
+                                                icon-name={viability.iconName}
+                                                size="xx-small"
+                                                variant="inverse"
+                                            ></lightning-icon>
+                                            {viability.label}
+                                        </span>
+                                        <p class="viability-detail">{viability.detail}</p>
+                                    </div>
+                                </template>
+
+                                <template if:true={potentialValue}>
+                                    <p class="potential">
+                                        Valor potencial de retrofit pendiente:
+                                        <strong>{potentialValue}</strong>
+                                    </p>
+                                </template>
+                            </div>
+                        </template>
+
+                        <!-- Configuracion instalada, componente a componente. -->
+                        <template if:true={hasComponents}>
+                            <section class="block">
+                                <div class="block-head">
+                                    <h3>Configuracion instalada</h3>
+                                    <p class="muted">{componentsSummary}</p>
+                                </div>
+                                <ul class="components">
+                                    <template for:each={components} for:item="c">
+                                        <li key={c.id} class={c.rowClass}>
+                                            <button
+                                                type="button"
+                                                class="component-link"
+                                                data-id={c.id}
+                                                onclick={handleOpenComponent}
+                                            >
+                                                {c.name}
+                                            </button>
+                                            <span class="component-config">{c.config}</span>
+                                            <span class="mono">{c.serialNumber}</span>
+                                            <span class={c.badgeClass}>{c.badgeLabel}</span>
+                                        </li>
+                                    </template>
+                                </ul>
+                            </section>
+                        </template>
+
+                        <!-- Historial de servicio de once anos. -->
+                        <section class="block">
+                            <div class="block-head">
+                                <h3>Historial de la maquina</h3>
+                                <template if:true={retrofitHistory}>
+                                    <p class="muted">
+                                        Retrofits aplicados: {retrofitHistory.skus}
+                                        <template if:true={retrofitHistory.hasLastDate}>
+                                            &middot; ultimo el
+                                            <lightning-formatted-date-time
+                                                value={retrofitHistory.lastDate}
+                                                year="numeric"
+                                                month="long"
+                                                day="2-digit"
+                                            ></lightning-formatted-date-time>
+                                        </template>
+                                    </p>
+                                </template>
+                            </div>
+                            <ol class="timeline">
+                                <template for:each={lifecycle} for:item="e">
+                                    <li key={e.id} class="timeline-item">
+                                        <span class={e.markerClass}>
+                                            <lightning-icon
+                                                icon-name={e.iconName}
+                                                size="xx-small"
+                                                variant="inverse"
+                                            ></lightning-icon>
+                                        </span>
+                                        <div class="timeline-content">
+                                            <p class="timeline-date">{e.date}</p>
+                                            <p class="timeline-title">{e.title}</p>
+                                            <p class="timeline-detail">{e.detail}</p>
+                                        </div>
+                                    </li>
+                                </template>
+                            </ol>
+                        </section>
+
+                        <!-- Casos reales de la org, no del mock. -->
+                        <template if:true={hasCases}>
+                            <section class="block">
+                                <div class="block-head">
+                                    <h3>Casos de servicio</h3>
+                                    <p class="muted">{casesSummary}</p>
+                                </div>
+                                <ul class="cases">
+                                    <template for:each={caseRows} for:item="c">
+                                        <li key={c.id} class="case-row">
+                                            <button
+                                                type="button"
+                                                class="component-link"
+                                                data-id={c.id}
+                                                onclick={handleOpenCase}
+                                            >
+                                                {c.label}
+                                            </button>
+                                            <span class="case-subject">{c.subject}</span>
+                                            <lightning-formatted-date-time
+                                                class="mono"
+                                                value={c.createdDate}
+                                                year="numeric"
+                                                month="2-digit"
+                                                day="2-digit"
+                                            ></lightning-formatted-date-time>
+                                            <span class={c.statusClass}>{c.status}</span>
+                                        </li>
+                                    </template>
+                                </ul>
+                            </section>
+                        </template>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

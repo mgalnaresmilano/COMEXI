@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Installed_Config__c</fullName>
+    <description>Configuración instalada (PC, versión de Windows, CPU GL, CU, pantalla). Insumo de la cualificación de viabilidad y del razonamiento del agente.</description>
+    <externalId>false</externalId>
+    <label>Configuración instalada</label>
+    <length>1000</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

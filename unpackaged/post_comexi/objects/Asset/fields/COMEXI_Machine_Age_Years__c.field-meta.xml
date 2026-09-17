@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Machine_Age_Years__c</fullName>
+    <description>Antigüedad en años de la máquina, calculada desde el año de instalación. En el discovery la antigüedad multiplica el coste de la intervención (x3/x4 en máquinas muy antiguas) y condiciona la viabilidad del retrofit. Es formula para que no se quede desfasada entre pases de la demo.</description>
+    <externalId>false</externalId>
+    <formula>IF(ISBLANK(COMEXI_Install_Year__c), NULL, YEAR(TODAY()) - COMEXI_Install_Year__c)</formula>
+    <label>Antigüedad de la máquina (años)</label>
+    <precision>4</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

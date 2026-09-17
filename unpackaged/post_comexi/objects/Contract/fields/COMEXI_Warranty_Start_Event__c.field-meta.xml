@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Warranty_Start_Event__c</fullName>
+    <description>Hecho que dispara el computo de la garantia. En COMEXI es la aceptacion de la intervencion, un matiz que hoy solo conocen quienes han leido la oferta entera.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Hecho desde el que se cuenta la garantia.</inlineHelpText>
+    <label>Inicio de la garantia</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Aceptacion</fullName>
+                <default>true</default>
+                <label>Aceptacion de la intervencion</label>
+            </value>
+            <value>
+                <fullName>Entrega</fullName>
+                <default>false</default>
+                <label>Entrega del material</label>
+            </value>
+            <value>
+                <fullName>Firma</fullName>
+                <default>false</default>
+                <label>Firma del contrato</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

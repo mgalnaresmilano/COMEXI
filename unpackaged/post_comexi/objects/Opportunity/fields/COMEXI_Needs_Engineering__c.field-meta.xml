@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Needs_Engineering__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Marca si este retrofit necesita ingeniería. Por defecto false, alineado con el discovery (el 80% de los retrofits no la necesita). Permite que el vendedor cotice directo cuando no hay que escalar a ingeniería.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Marca si el retrofit requiere intervención de ingeniería.</inlineHelpText>
+    <label>Necesita ingeniería</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

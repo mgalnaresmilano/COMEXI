@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Source_Case__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Caso de servicio que origina la oportunidad de retrofit. La escena 03 del guion pide que la oportunidad no pierda el vinculo con el caso, y Opportunity no trae ningun campo estandar hacia Case.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Caso desde el que se genero esta oportunidad de retrofit.</inlineHelpText>
+    <label>Caso de origen</label>
+    <referenceTo>Case</referenceTo>
+    <relationshipLabel>Oportunidades de retrofit</relationshipLabel>
+    <relationshipName>COMEXI_Retrofit_Opportunities</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

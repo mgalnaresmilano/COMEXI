@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Intervention_Country__c</fullName>
+    <description>Pais donde se ejecuta la intervencion. Es el dato que en el proceso actual decide el idioma del documento y la existencia de representante local.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Pais donde se ejecuta la intervencion.</inlineHelpText>
+    <label>Pais de intervencion</label>
+    <length>80</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

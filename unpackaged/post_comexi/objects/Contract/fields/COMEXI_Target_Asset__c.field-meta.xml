@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Target_Asset__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Maquina instalada sobre la que se ejecuta el retrofit contratado (MSC000600, Comexi Proslit S2 DS). Permite que el contrato hable de la maquina concreta y que desde la maquina se vea que contratos la afectan.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Maquina instalada objeto de este contrato.</inlineHelpText>
+    <label>Maquina objetivo</label>
+    <referenceTo>Asset</referenceTo>
+    <relationshipLabel>Contratos de retrofit</relationshipLabel>
+    <relationshipName>COMEXI_Retrofit_Contracts</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Stations__c</fullName>
+    <description>Número de estaciones de la máquina: cuerpos de impresión en las flexográficas y husillos de corte en las cortadoras. Multiplica el alcance de cualquier retrofit que se aplique estación por estación.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Cuerpos de impresión o husillos de corte, según el tipo de máquina.</inlineHelpText>
+    <label>Estaciones</label>
+    <precision>2</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

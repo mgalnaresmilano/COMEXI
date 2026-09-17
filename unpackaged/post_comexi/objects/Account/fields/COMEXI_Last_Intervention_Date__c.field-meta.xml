@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Last_Intervention_Date__c</fullName>
+    <description>Fecha de la última intervención de un técnico Comexi en las instalaciones del cliente. Da contexto de relación de servicio antes de planificar el viaje del retrofit.</description>
+    <externalId>false</externalId>
+    <label>Última intervención</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StaticResource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <cacheControl>Public</cacheControl>
+    <contentType>application/zip</contentType>
+    <description>Imagenes de catalogo de los productos Comexi (un PNG por SKU). Generadas por scripts/build_comexi_product_images.py y referenciadas desde Product2.DisplayUrl como /resource/COMEXI_ProductImages/&lt;SKU&gt;.png</description>
+</StaticResource>

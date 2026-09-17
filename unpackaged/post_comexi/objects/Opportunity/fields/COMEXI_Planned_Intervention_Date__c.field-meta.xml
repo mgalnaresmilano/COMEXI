@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Planned_Intervention_Date__c</fullName>
+    <description>Fecha prevista de la intervención en planta, distinta de la fecha de cierre comercial (CloseDate). Se coordina con la ventana de parada de la línea del cliente.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Fecha prevista de la intervención en la planta del cliente.</inlineHelpText>
+    <label>Fecha prevista de intervención</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

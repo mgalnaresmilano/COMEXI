@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Source_Opportunity__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Oportunidad de retrofit de la que procede el contrato. El estandar SourceQuoteId solo llega hasta la oferta, asi que sin este campo hay que navegar a la oferta para saber de que oportunidad se trata.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Oportunidad de la que procede este contrato.</inlineHelpText>
+    <label>Oportunidad de origen</label>
+    <referenceTo>Opportunity</referenceTo>
+    <relationshipLabel>Contratos de retrofit</relationshipLabel>
+    <relationshipName>COMEXI_Retrofit_Contracts</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

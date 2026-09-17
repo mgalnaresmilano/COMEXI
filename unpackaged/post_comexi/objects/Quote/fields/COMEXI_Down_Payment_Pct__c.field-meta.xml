@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Down_Payment_Pct__c</fullName>
+    <description>Porcentaje de anticipo exigido en la oferta (30% en el escenario). Es la condición que después se convierte en hito de facturación y bloquea el arranque de ingeniería.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Porcentaje de anticipo exigido al cliente.</inlineHelpText>
+    <label>Anticipo %</label>
+    <precision>5</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

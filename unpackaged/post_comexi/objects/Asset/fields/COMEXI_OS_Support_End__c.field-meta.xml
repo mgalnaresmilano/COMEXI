@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_OS_Support_End__c</fullName>
+    <description>Fecha de fin de soporte del sistema operativo instalado. Convierte la obsolescencia en algo accionable: es la fecha sobre la que se construye la campaña proactiva de retrofit en vez de esperar a que el cliente llame.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Fecha en la que el fabricante dejó o dejará de dar soporte al sistema operativo.</inlineHelpText>
+    <label>Fin de soporte del SO</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

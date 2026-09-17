@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Retrofitting</fullName>
+    <active>true</active>
+    <businessProcess>COMEXI_Sales_Process</businessProcess>
+    <description>Oportunidad de retrofit sobre máquina instalada. Tipo protagonista de la demo.</description>
+    <label>Retrofitting</label>
+    <picklistValues>
+        <picklist>LeadSource</picklist>
+        <values>
+            <fullName>Caso de servicio</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Referral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partner</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inbound Call</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Website</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>Retrofit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Add-On Business</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Existing Business</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Services</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

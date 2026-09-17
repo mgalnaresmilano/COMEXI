@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>false</active>
+    <allowRecall>true</allowRecall>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <type>allInternalUsers</type>
+    </allowedSubmitters>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <type>user</type>
+                <name>trailsignup.998d55bf0e1b20@salesforce.com</name>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <label>Aprobacion del Director de Servicio</label>
+        <name>Aprobacion_Director</name>
+    </approvalStep>
+    <description>INACTIVO. Sustituido por COMEXI Discount Approval, que aplica niveles sobre el descuento efectivo (mas del 10% un nivel, mas del 20% dos). Se conserva desactivado para no perder el historial de aprobaciones ya registrado con este proceso, y para que solo un proceso compita por la entrada de la oferta.</description>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <formula>OR(COMEXI_Discount_Pct__c &gt; 3, COMEXI_Blended_Margin_Pct__c &lt; 30)</formula>
+    </entryCriteria>
+    <label>COMEXI Margin Approval</label>
+    <recordEditability>AdminOnly</recordEditability>
+    <showApprovalHistory>true</showApprovalHistory>
+</ApprovalProcess>

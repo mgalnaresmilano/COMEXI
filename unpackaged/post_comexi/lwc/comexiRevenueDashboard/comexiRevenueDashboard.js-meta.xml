@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Comexi Revenue Dashboard</masterLabel>
+    <description>Panell de KPIs de servei i retrofit de Comexi amb selector de rol Comercial / Cap de servei, filtres i dades mock coherents amb el cas 174535.</description>
+    <targets>
+        <target>lightning__HomePage</target>
+        <target>lightning__AppPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__HomePage,lightning__AppPage">
+            <property name="cardTitle" type="String" label="Titol del panell" default="Comexi Revenue Cloud - Panell de servei i retrofit"/>
+            <property name="defaultRole" type="String" label="Rol per defecte (commercial | manager)" default="manager"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

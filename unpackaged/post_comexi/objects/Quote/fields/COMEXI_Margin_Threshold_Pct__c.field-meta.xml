@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Margin_Threshold_Pct__c</fullName>
+    <description>Umbral de margen por debajo del cual la oferta necesita aprobación del director de servicio. Hace explícita la regla que hoy se aplica por WhatsApp.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Margen mínimo sin aprobación.</inlineHelpText>
+    <label>Umbral de margen %</label>
+    <precision>5</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

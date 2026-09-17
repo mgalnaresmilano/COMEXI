@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Payment_Terms__c</fullName>
+    <description>Condiciones de pago pactadas para el saldo posterior al anticipo (Net 30 en el escenario). Se hereda de la oferta aprobada para que contrato y oferta no discrepen.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Condiciones de pago del saldo.</inlineHelpText>
+    <label>Condiciones de pago</label>
+    <length>80</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Down_Payment_Amount__c</fullName>
+    <description>Importe del anticipo derivado del porcentaje y del valor contratado. Es la cifra que hoy se persigue por correo y que aqui queda fijada en el contrato.</description>
+    <externalId>false</externalId>
+    <formula>IF(ISBLANK(COMEXI_Down_Payment_Pct__c), 0, COMEXI_Contract_Value__c * COMEXI_Down_Payment_Pct__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Importe del anticipo (calculado).</inlineHelpText>
+    <label>Anticipo (importe)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

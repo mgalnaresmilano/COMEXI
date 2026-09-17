@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Viability_Rationale__c</fullName>
+    <description>Explicación auditable del veredicto de viabilidad: la traza que deja el COMEXI Retrofit Advisor al analizar el caso (componente obsoleto, antigüedad, encaje del retrofit y riesgos).</description>
+    <externalId>false</externalId>
+    <label>Justificación de viabilidad</label>
+    <length>4000</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>6</visibleLines>
+</CustomField>

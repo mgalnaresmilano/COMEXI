@@ -3,7 +3,7 @@
 > **Auto-generated** by `scripts/ai/generate_cci_reference.py` from `cumulusci.yml`.  
 > Do not edit manually — re-run the script after changing `cumulusci.yml`.
 
-**41 feature flags**, **85 configuration values**, **41 YAML anchors** under `project.custom`.
+**42 feature flags**, **85 configuration values**, **41 YAML anchors** under `project.custom`.
 
 ---
 
@@ -25,6 +25,7 @@ Boolean flags that gate task/flow execution via `when:` clauses.
 | `clm` | `True` | 4 flow step(s) |
 | `clm_data` | `False` | 1 flow step(s) |
 | `collections` | `True` | 4 flow step(s) |
+| `comexi` | `False` | — |
 | `commerce` | `False` | 2 flow step(s) |
 | `constraints` | `True` | 12 flow step(s) |
 | `constraints_data` | `True` | 8 flow step(s) |

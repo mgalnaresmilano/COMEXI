@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Retrofits_Applied__c</fullName>
+    <description>SKUs de los retrofits ya aplicados a la máquina, separados por coma. Evita recomendar dos veces el mismo retrofit y es el histórico que hoy solo existe en la memoria del técnico que hizo la intervención.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>SKUs de retrofits ya aplicados, separados por coma.</inlineHelpText>
+    <label>Retrofits aplicados</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

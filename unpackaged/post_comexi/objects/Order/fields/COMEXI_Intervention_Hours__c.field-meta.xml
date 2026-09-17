@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Intervention_Hours__c</fullName>
+    <description>Horas totales comprometidas, suma de montaje mecanico, instalacion electrica y puesta en marcha. Es la carga que operaciones tiene que reservar.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Horas totales comprometidas.</inlineHelpText>
+    <label>Horas de intervencion</label>
+    <precision>6</precision>
+    <required>false</required>
+    <scale>1</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Has_Representative__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Marca si el país del cliente opera con representante local. Activa el paso de comisión (8%) del pricing procedure de retrofit.</description>
+    <externalId>false</externalId>
+    <label>Has Representative</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

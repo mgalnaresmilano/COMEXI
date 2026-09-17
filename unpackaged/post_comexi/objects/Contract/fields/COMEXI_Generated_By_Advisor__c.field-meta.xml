@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Generated_By_Advisor__c</fullName>
+    <description>Marca los contratos cuya cadena arranco en el COMEXI Retrofit Advisor. Es tambien la bandera que usa COMEXI_ContractTrigger para no tocar contratos ajenos a la demo.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Marcado si la cadena la origino el Retrofit Advisor.</inlineHelpText>
+    <label>Generado por el Advisor</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+    <defaultValue>false</defaultValue>
+</CustomField>

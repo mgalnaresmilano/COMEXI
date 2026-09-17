@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Retrofit_Potential_Value__c</fullName>
+    <description>Valor estimado del retrofit pendiente en esta máquina. Es lo que convierte el preestudio masivo de la escena 14 en un pipeline cuantificado: la base instalada deja de ser un inventario y pasa a ser una previsión de negocio de servicio.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Valor estimado del retrofit pendiente en esta máquina.</inlineHelpText>
+    <label>Valor potencial de retrofit</label>
+    <precision>16</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

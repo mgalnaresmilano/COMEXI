@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Document_Language__c</fullName>
+    <description>Idioma en el que se genera el documento de oferta, derivado del país del cliente. COMEXI oferta en varios idiomas y hoy elige la plantilla a mano.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Idioma del documento de oferta.</inlineHelpText>
+    <label>Idioma del documento</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>en_US</fullName>
+                <default>false</default>
+                <label>English</label>
+            </value>
+            <value>
+                <fullName>es</fullName>
+                <default>false</default>
+                <label>Castellano</label>
+            </value>
+            <value>
+                <fullName>ca</fullName>
+                <default>false</default>
+                <label>Català</label>
+            </value>
+            <value>
+                <fullName>fr</fullName>
+                <default>false</default>
+                <label>Français</label>
+            </value>
+            <value>
+                <fullName>de</fullName>
+                <default>false</default>
+                <label>Deutsch</label>
+            </value>
+            <value>
+                <fullName>it</fullName>
+                <default>false</default>
+                <label>Italiano</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

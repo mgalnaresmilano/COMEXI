@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Service_Revenue_Lifetime__c</fullName>
+    <description>Ingresos de servicio acumulados sobre esta máquina desde su instalación: repuestos, intervenciones y retrofits. Es el argumento de por qué el negocio de servicio merece la misma trazabilidad que la venta de máquina nueva.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Ingresos de servicio acumulados sobre esta máquina.</inlineHelpText>
+    <label>Ingresos de servicio acumulados</label>
+    <precision>16</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

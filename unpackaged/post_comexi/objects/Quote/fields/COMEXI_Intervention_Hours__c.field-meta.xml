@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Intervention_Hours__c</fullName>
+    <description>Horas totales de intervención ofertadas (montaje mecánico, instalación eléctrica y puesta en marcha). Resume en la cabecera lo que el grupo Intervención desglosa línea a línea.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Horas totales de intervención ofertadas.</inlineHelpText>
+    <label>Horas de intervención</label>
+    <precision>6</precision>
+    <required>false</required>
+    <scale>1</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

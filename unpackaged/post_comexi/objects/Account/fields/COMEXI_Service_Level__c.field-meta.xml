@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Service_Level__c</fullName>
+    <description>Nivel del contrato de servicio del cliente. Los packs gold/silver existen en el negocio pero hoy no están catalogados (gap del discovery); tenerlos aquí permite condicionar tiempos de respuesta y precios de intervención.</description>
+    <externalId>false</externalId>
+    <label>Nivel de servicio</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Gold</fullName>
+                <default>false</default>
+                <label>Gold</label>
+            </value>
+            <value>
+                <fullName>Silver</fullName>
+                <default>false</default>
+                <label>Silver</label>
+            </value>
+            <value>
+                <fullName>Bronze</fullName>
+                <default>false</default>
+                <label>Bronze</label>
+            </value>
+            <value>
+                <fullName>Sin contrato</fullName>
+                <default>false</default>
+                <label>Sin contrato</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

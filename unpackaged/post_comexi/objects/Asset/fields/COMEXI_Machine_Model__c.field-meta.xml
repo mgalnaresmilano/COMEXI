@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Machine_Model__c</fullName>
+    <description>Modelo de la máquina instalada (p. ej. Proslit S2 DS). Alimenta la cualificación de viabilidad del retrofit.</description>
+    <externalId>false</externalId>
+    <label>Modelo de máquina</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

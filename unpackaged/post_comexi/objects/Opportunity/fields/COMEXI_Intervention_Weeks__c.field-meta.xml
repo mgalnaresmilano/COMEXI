@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Intervention_Weeks__c</fullName>
+    <description>Semanas estimadas hasta poder ejecutar la intervención en planta. El discovery sitúa el planificador de intervenciones en hasta 6 semanas.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Semanas estimadas hasta la intervención en planta.</inlineHelpText>
+    <label>Plazo de intervención (semanas)</label>
+    <precision>2</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

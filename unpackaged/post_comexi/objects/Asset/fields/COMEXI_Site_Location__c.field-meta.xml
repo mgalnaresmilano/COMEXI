@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Site_Location__c</fullName>
+    <description>Planta y país donde está instalada la máquina. No siempre coincide con la dirección de facturación de la cuenta, y es lo que determina el riesgo país, los gastos de desplazamiento y la ventana de intervención de la oferta.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Planta y país donde está físicamente la máquina.</inlineHelpText>
+    <label>Planta / emplazamiento</label>
+    <length>120</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

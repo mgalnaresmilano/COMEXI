@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_SAP_Customer_Code__c</fullName>
+    <description>Código de cliente en SAP. Es la clave con la que la descomposición DRO envía el material del pedido a SAP, y evita la doble entrada manual que hoy hace operaciones.</description>
+    <externalId>true</externalId>
+    <label>SAP Customer Code</label>
+    <length>20</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

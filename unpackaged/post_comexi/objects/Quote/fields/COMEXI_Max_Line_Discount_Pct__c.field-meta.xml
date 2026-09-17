@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Max_Line_Discount_Pct__c</fullName>
+    <description>Descuento mas alto concedido en una sola linea de la oferta. Es el que decide cuantas firmas pide la orquestacion RLM_Quote_Smart_Approval, porque Quote.RLM_Approval_Level__c consolida con MAX el nivel calculado linea a linea. Explica en la demo por que un descuento mezclado moderado puede exigir dos niveles.</description>
+    <label>Max Line Discount %</label>
+    <summarizedField>QuoteLineItem.Discount</summarizedField>
+    <summaryForeignKey>QuoteLineItem.QuoteId</summaryForeignKey>
+    <summaryOperation>max</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

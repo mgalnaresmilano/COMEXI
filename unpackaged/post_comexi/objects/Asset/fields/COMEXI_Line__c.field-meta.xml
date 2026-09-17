@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Line__c</fullName>
+    <description>Familia/línea de la máquina (T, L, C, P) según la codificación de producto de Comexi.</description>
+    <externalId>false</externalId>
+    <label>Línea</label>
+    <length>10</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

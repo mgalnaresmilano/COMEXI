@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Discount_Effective_Pct__c</fullName>
+    <description>Descuento efectivo de la oferta como número (7,71 = 7,71%), tomado del campo estándar Discount que recalcula el motor de pricing al ajustar líneas. Existe porque un campo Percent se evalúa como valor/100 dentro de una fórmula, lo que hace ilegibles los criterios de aprobación: aquí el criterio se escribe contra 10 y 20, no contra 0,10 y 0,20. Es el campo que gobierna los niveles del proceso COMEXI Discount Approval.</description>
+    <externalId>false</externalId>
+    <formula>Discount * 100</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Descuento efectivo de la oferta, en puntos porcentuales.</inlineHelpText>
+    <label>Descuento efectivo (pp)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Viability_Status__c</fullName>
+    <description>Veredicto de viabilidad técnica del retrofit antes de cotizar. Materializa el filtro de ingeniería del discovery (D2: hoy el 100% de los retrofits pasa por tres personas aunque el 80% no necesite ingeniería).</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Resultado del preestudio de viabilidad del retrofit.</inlineHelpText>
+    <label>Estado de viabilidad</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Viable sin ingenieria</fullName>
+                <default>false</default>
+                <label>Viable sin ingeniería</label>
+            </value>
+            <value>
+                <fullName>Viable con ingenieria</fullName>
+                <default>false</default>
+                <label>Viable con ingeniería</label>
+            </value>
+            <value>
+                <fullName>Requiere estudio tecnico</fullName>
+                <default>false</default>
+                <label>Requiere estudio técnico</label>
+            </value>
+            <value>
+                <fullName>No viable</fullName>
+                <default>false</default>
+                <label>No viable</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

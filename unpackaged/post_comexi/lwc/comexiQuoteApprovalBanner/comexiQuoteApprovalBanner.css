@@ -1,0 +1,102 @@
+.comexi-wrapper {
+    position: relative;
+    padding: 0.25rem 0;
+}
+
+.comexi-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border-radius: 0.25rem;
+    padding: 0.75rem 1rem;
+}
+
+.comexi-banner__main {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+}
+
+.comexi-banner__text {
+    min-width: 0;
+}
+
+.comexi-banner__headline {
+    font-weight: 700;
+}
+
+.comexi-banner__detail {
+    font-size: 0.8125rem;
+    opacity: 0.9;
+}
+
+.comexi-banner__metrics {
+    display: flex;
+    gap: 1.5rem;
+    flex-shrink: 0;
+}
+
+.comexi-metric {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    line-height: 1.2;
+}
+
+.comexi-metric__label {
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: 0.85;
+}
+
+.comexi-metric__value {
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.comexi-levels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.comexi-level {
+    display: flex;
+    align-items: center;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.625rem;
+    border-radius: 1rem;
+    border: 1px solid #c9c7c5;
+    color: #514f4d;
+    background: #f3f2f2;
+}
+
+.comexi-level_current {
+    border-color: #0176d3;
+    color: #0176d3;
+    background: #eef4ff;
+    font-weight: 700;
+}
+
+.comexi-level_done {
+    border-color: #2e844a;
+    color: #2e844a;
+    background: #ebf7ee;
+}
+
+.comexi-actions {
+    display: flex;
+    align-items: center;
+    margin-top: 0.75rem;
+}
+
+.comexi-hint {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: #514f4d;
+}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Down_Payment_Status__c</fullName>
+    <description>Estado del cobro del anticipo. Hoy en COMEXI esto vive en correos; aqui es un dato del pedido y el plan de fulfillment lo hace cumplir.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Estado del cobro del anticipo.</inlineHelpText>
+    <label>Estado del anticipo</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Pendiente</fullName>
+                <default>false</default>
+                <label>Pendiente</label>
+            </value>
+            <value>
+                <fullName>Solicitado</fullName>
+                <default>false</default>
+                <label>Solicitado</label>
+            </value>
+            <value>
+                <fullName>Cobrado</fullName>
+                <default>false</default>
+                <label>Cobrado</label>
+            </value>
+            <value>
+                <fullName>Exencion autorizada</fullName>
+                <default>false</default>
+                <label>Exención autorizada</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

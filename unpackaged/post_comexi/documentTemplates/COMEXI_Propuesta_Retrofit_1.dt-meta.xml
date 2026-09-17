@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Propuesta de retrofit de la demo COMEXI. Sale en el desplegable Document Template del
+     modal Create Proposal de la oferta porque su usageType es Revenue_Lifecycle_Management y
+     esta activa: ese es el unico filtro que aplica el modal. DocumentTemplate no admite el
+     elemento description, de ahi este comentario.
+
+     El .docx lo construye scripts/build_comexi_retrofit_proposal.py y es una foto fija de la
+     oferta 00000049 de Roberts Mart Co Ltd: no lleva ni un token, todo el contenido va
+     literal. Se declara QuoteNumber en tokenList porque el motor pide la lista aunque el
+     cuerpo no la use; el ODT se ejecuta y no sustituye nada. Si el advisor regenera la oferta
+     y cambian los importes hay que volver a ejecutar el script con los datos nuevos, o el PDF
+     contara una cosa distinta de la que se ve en pantalla.
+
+     El despliegue la deja inactiva pese al isActive de abajo. La activa la tarea
+     activate_comexi_docgen_template (scripts/apex/comexi/17_activate_comexi_docgen_template.apex). -->
+<DocumentTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <documentGenerationMechanism>ServerSide</documentGenerationMechanism>
+    <extractOmniDataTransformName>RLMQuoteExtractBasic</extractOmniDataTransformName>
+    <fileExtension>docx</fileExtension>
+    <hasBatchableSection>false</hasBatchableSection>
+    <isActive>true</isActive>
+    <isSectionProcessed>false</isSectionProcessed>
+    <mapperOmniDataTransformName>RLMQuoteTransformBasic</mapperOmniDataTransformName>
+    <name>COMEXI_Propuesta_Retrofit</name>
+    <shouldDisplayUnmappedToken>false</shouldDisplayUnmappedToken>
+    <shouldExtractEmbeddedTmplToken>false</shouldExtractEmbeddedTmplToken>
+    <status>Active</status>
+    <tokenList>QuoteNumber</tokenList>
+    <tokenMappingMethodType>OmniDataTransform</tokenMappingMethodType>
+    <tokenMappingType>JSON</tokenMappingType>
+    <type>MicrosoftWord</type>
+    <uniqueName>COMEXI_Propuesta_Retrofit_1</uniqueName>
+    <usageType>Revenue_Lifecycle_Management</usageType>
+    <versionNumber>1</versionNumber>
+</DocumentTemplate>

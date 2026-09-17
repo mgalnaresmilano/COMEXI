@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Catalogo por defecto de Product Discovery = "Comexi Service & Retrofit"
+  (ProductCatalog.Code = COMEXI_SERVICE).
+
+  Necesario para cotizar: Place Sales Transaction resuelve cada producto de linea
+  contra el catalogo por defecto. Con el default apuntando al catalogo QuantumBit,
+  las lineas del retrofit fallan con
+  "Could not find product with ID: ... from product details fetched from
+  ProductDiscovery Service", aunque el producto este indexado y con precio.
+
+  El id es especifico de la org `comexi`; si se reconstruye la org hay que
+  resolverlo con: SELECT Id FROM ProductCatalog WHERE Code = 'COMEXI_SERVICE'.
+-->
+<ProductDiscoverySettings xmlns="http://soap.sforce.com/2006/04/metadata">
+    <prodDiscDefaultCatalogOrgValue>0ZSbm000000ZthZGAS</prodDiscDefaultCatalogOrgValue>
+</ProductDiscoverySettings>

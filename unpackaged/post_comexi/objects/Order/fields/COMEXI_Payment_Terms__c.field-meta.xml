@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Payment_Terms__c</fullName>
+    <description>Condiciones de pago heredadas del contrato, para que operaciones y finanzas lean lo mismo.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Condiciones de pago del contrato.</inlineHelpText>
+    <label>Condiciones de pago</label>
+    <length>40</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

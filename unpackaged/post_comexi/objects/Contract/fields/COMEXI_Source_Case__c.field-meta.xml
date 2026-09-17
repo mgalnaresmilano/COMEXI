@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Source_Case__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Caso de servicio que origino la cadena caso - oportunidad - oferta - contrato. Contract no trae ningun campo estandar hacia Case, y sin el el contrato pierde la trazabilidad hasta el correo de entrada del cliente.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Caso desde el que nacio este contrato.</inlineHelpText>
+    <label>Caso de origen</label>
+    <referenceTo>Case</referenceTo>
+    <relationshipLabel>Contratos de retrofit</relationshipLabel>
+    <relationshipName>COMEXI_Retrofit_Contracts</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

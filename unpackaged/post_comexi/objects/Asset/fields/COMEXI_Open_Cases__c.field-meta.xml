@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Open_Cases__c</fullName>
+    <description>Casos de servicio abiertos sobre la máquina. No puede ser un rollup summary porque Case no es detalle de Asset: lo sella el script de seed de la demo. El componente de la ficha lee los casos reales, así que este campo es el que hace el dato visible también en informes y listas.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Casos de servicio abiertos sobre esta máquina.</inlineHelpText>
+    <label>Casos abiertos</label>
+    <precision>3</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

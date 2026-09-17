@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Target_Asset__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Máquina instalada (Asset) sobre la que se ejecuta el retrofit ofertado. Permite que la oferta y el documento generado hablen de la máquina concreta (MSC000600, Comexi Proslit S2 DS) sin navegar hasta la oportunidad.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Máquina instalada objeto de esta oferta.</inlineHelpText>
+    <label>Máquina objetivo</label>
+    <referenceTo>Asset</referenceTo>
+    <relationshipLabel>Ofertas de retrofit</relationshipLabel>
+    <relationshipName>COMEXI_Retrofit_Quotes</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

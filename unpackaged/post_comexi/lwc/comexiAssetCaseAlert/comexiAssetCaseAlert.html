@@ -1,0 +1,38 @@
+<template>
+    <template if:true={hasCase}>
+        <div class="alert-band">
+            <span class="alert-icon">
+                <lightning-icon icon-name="utility:warning" size="small" variant="inverse"></lightning-icon>
+            </span>
+
+            <div class="alert-text">
+                <p class="eyebrow">{eyebrow}</p>
+                <h2 class="alert-title">{title}</h2>
+
+                <template if:true={hasDescription}>
+                    <p class="alert-quote">&laquo;{alertCase.description}&raquo;</p>
+                </template>
+
+                <p class="alert-meta">
+                    <template if:true={reportedBy}>
+                        Reportado por {reportedBy} &middot;
+                    </template>
+                    <lightning-formatted-date-time
+                        value={alertCase.createdDate}
+                        year="numeric"
+                        month="long"
+                        day="2-digit"
+                    ></lightning-formatted-date-time>
+                    &middot; {alertCase.status}
+                </p>
+            </div>
+
+            <div class="alert-action">
+                <button type="button" class="alert-button" onclick={handleOpenCase}>
+                    {buttonLabel}
+                    <lightning-icon icon-name="utility:forward" size="xx-small" variant="inverse"></lightning-icon>
+                </button>
+            </div>
+        </div>
+    </template>
+</template>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Retrofit_SKU__c</fullName>
+    <description>Código de catálogo del retrofit ofertado (por ejemplo T100 - UPDATE PC). Deja explícito en la cabecera de la oferta que el SKU procede del catálogo real y no de un código inventado.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>SKU del retrofit recomendado por el catálogo.</inlineHelpText>
+    <label>SKU de retrofit</label>
+    <length>30</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

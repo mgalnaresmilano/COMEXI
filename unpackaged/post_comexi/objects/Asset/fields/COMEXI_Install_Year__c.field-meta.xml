@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Install_Year__c</fullName>
+    <description>Año de instalación de la máquina. La antigüedad alta eleva el coste de retrofit (x3/x4) y puede invalidar el retrofit estándar.</description>
+    <externalId>false</externalId>
+    <label>Año de instalación</label>
+    <precision>4</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

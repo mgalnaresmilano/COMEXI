@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Requires_Engineering__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Marca si un retrofit sobre esta máquina tiene que pasar por ingeniería de proyecto. Por defecto false, alineado con el discovery (D2: el 80% de los retrofits no necesita ingeniería pero hoy el 100% pasa por tres personas). Es el campo que separa el veredicto viable de MSC000600 del "requiere ingeniería" de la máquina de 2001.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Marca si el retrofit tiene que pasar por ingeniería de proyecto.</inlineHelpText>
+    <label>Requiere ingeniería</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

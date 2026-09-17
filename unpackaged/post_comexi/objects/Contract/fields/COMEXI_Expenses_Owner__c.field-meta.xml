@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Expenses_Owner__c</fullName>
+    <description>Indica a cargo de quien van los gastos de desplazamiento y estancia. Es la palanca de negociacion que hoy vive como una casilla en la pestana de intervencion del Excel.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>A cargo de quien van los gastos de desplazamiento.</inlineHelpText>
+    <label>Gastos a cargo de</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Comexi</fullName>
+                <default>true</default>
+                <label>Comexi</label>
+            </value>
+            <value>
+                <fullName>Cliente</fullName>
+                <default>false</default>
+                <label>Cliente</label>
+            </value>
+            <value>
+                <fullName>Compartido</fullName>
+                <default>false</default>
+                <label>Compartido</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

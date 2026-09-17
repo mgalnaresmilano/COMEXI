@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COMEXI_Offer_Language__c</fullName>
+    <description>Idioma en el que se genera la oferta y el contrato para este cliente. Sustituye la elección manual de idioma del menú del Launcher, que hoy obliga a mantener siete plantillas de Google Docs en paralelo.</description>
+    <externalId>false</externalId>
+    <label>Idioma de la oferta</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Català</fullName>
+                <default>false</default>
+                <label>Català</label>
+            </value>
+            <value>
+                <fullName>Castellano</fullName>
+                <default>false</default>
+                <label>Castellano</label>
+            </value>
+            <value>
+                <fullName>English</fullName>
+                <default>false</default>
+                <label>English</label>
+            </value>
+            <value>
+                <fullName>Français</fullName>
+                <default>false</default>
+                <label>Français</label>
+            </value>
+            <value>
+                <fullName>Deutsch</fullName>
+                <default>false</default>
+                <label>Deutsch</label>
+            </value>
+            <value>
+                <fullName>Italiano</fullName>
+                <default>false</default>
+                <label>Italiano</label>
+            </value>
+            <value>
+                <fullName>Português</fullName>
+                <default>false</default>
+                <label>Português</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

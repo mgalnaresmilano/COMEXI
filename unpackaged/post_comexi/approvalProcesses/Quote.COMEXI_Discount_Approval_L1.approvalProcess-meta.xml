@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>false</active>
+    <allowRecall>true</allowRecall>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <type>allInternalUsers</type>
+    </allowedSubmitters>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <type>user</type>
+                <name>trailsignup.998d55bf0e1b20@salesforce.com</name>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>Unico nivel. El Deal Desk valida el descuento y el impacto en margen.</description>
+        <label>Nivel 1 - Deal Desk</label>
+        <name>Nivel_1_Deal_Desk</name>
+    </approvalStep>
+    <description>INACTIVO. Sustituido por el circuito nativo de Advanced Approvals: la orquestacion RLM_Quote_Smart_Approval, que es la que alimenta la pestana Approvals de la oferta y escribe el path en Quote.RLM_Approval_Status__c. Un proceso de aprobacion clasico no aparece en esa pestana ni mueve ese campo, asi que dejaba la demo con dos circuitos incompatibles. Se conserva desactivado porque ya tiene historial de aprobaciones registrado.</description>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <formula>COMEXI_Discount_Effective_Pct__c &gt; 10</formula>
+    </entryCriteria>
+    <label>COMEXI Discount Approval - 1 nivel</label>
+    <recordEditability>AdminOnly</recordEditability>
+    <showApprovalHistory>true</showApprovalHistory>
+</ApprovalProcess>
